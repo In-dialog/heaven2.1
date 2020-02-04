@@ -8,34 +8,42 @@ public class ControlSystem : MonoBehaviour
     public List<Vector3> pointsRecived = new List<Vector3>();
 
     public List<LineProperties> lineProperties = new List<LineProperties>();
-    public bool needPoints = true;
-    bool firstTime;
+    public bool needPoints;
+    public bool randomMode;
 
     void Update()
     {
-        if (needPoints)
+        if (randomMode)
         {
-            FindObjectOfType<GameClient>().start = true;
-            needPoints = false;
-        }
+            if (_wayPoints.Count < 1)
+            {
+                _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(0);
 
-        if (_wayPoints.Count < 1)
-        {
-            //FindObjectOfType<GameClient>().start = true;
-            _wayPoints = new List<Vector3>(pointsRecived);
-            pointsRecived.Clear();
-            print("No Oints");
-
+            }
         }
         else
         {
+            if (needPoints)
+            {
+                FindObjectOfType<GameClient>().start = true;
+                needPoints = false;
+            }
 
-            print("I Have Oints");
+            if (_wayPoints.Count < 1)
+            {
+                _wayPoints = new List<Vector3>(pointsRecived);
+                pointsRecived.Clear();
+                print("No Oints");
 
-        }
-        if (lineProperties.Count > 100)
-        {
-            lineProperties.Clear();
+            }
+            else
+                print("I Have Oints");
+
+            if (lineProperties.Count > 100)
+            {
+                lineProperties.Clear();
+                lineProperties = new List<LineProperties>();
+            }
         }
     }
  

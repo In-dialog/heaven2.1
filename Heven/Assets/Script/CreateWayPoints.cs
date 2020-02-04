@@ -7,7 +7,6 @@ public class CreateWayPoints : MonoBehaviour
     public int maxPoints, maxX, maxY;
     public int _case;
     MeshFilter mF;
-    float yPos;
     GameObject pen;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,6 @@ public class CreateWayPoints : MonoBehaviour
         mF.mesh = UpdateMesh(mF.mesh, (maxX/5/2), (maxY/5/2 ));
         plane.transform.position = new Vector3(0, 0, 2);
         pen = FindObjectOfType<Mover>().gameObject;
-        //plane.GetComponent<MeshRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -32,13 +30,9 @@ public class CreateWayPoints : MonoBehaviour
     List < Vector3 > _wayPoints = new List<Vector3>();
 
         _case = aCase;
-        //Debug.Log(_case);
         if (_case == 0)
         {
-            //for (int i = 0; i < maxPoints; i++)
-            //{
-            //    _wayPoints.Add(mF.mesh.GetRandomPointOnSurface());
-            //}
+
             Vector3 temp = mF.mesh.GetRandomPointOnSurface();
             while (Vector3.Distance(temp, pen.transform.position) > 50)
             {
@@ -52,28 +46,15 @@ public class CreateWayPoints : MonoBehaviour
             for (int i = 0; i < maxPoints; i++)
             {
 
-
                 Vector3 temp = RandomPoint();
                 if(i>1)
                 while (Vector3.Distance(temp, _wayPoints[i-1]) < 2 | Vector3.Distance(temp, _wayPoints[i - 1]) > 10)
                 {
                     temp = RandomPoint();
                 }
-                //if (i % 50 == 0)
-                //{
-                //    _wayPoints.Add(RandomPoint());
-                //}
                 _wayPoints.Add(temp);
-                //_wayPoints.Add(RandomPoint());
-                //_wayPoints.Add(RandomPoint());
-                //_wayPoints.Add(RandomPoint());
-
-
             }
         }
-
-        //if (_case == 1)
-        //    _wayPoints.Add(mF.mesh.GetRandomPointOnSurface());
         return _wayPoints;
 
     }

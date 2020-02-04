@@ -1057,7 +1057,6 @@ GameObject:
   - component: {fileID: 2002940504}
   - component: {fileID: 2002940506}
   - component: {fileID: 2002940507}
-  - component: {fileID: 2002940508}
   - component: {fileID: 2002940505}
   m_Layer: 0
   m_Name: Brain
@@ -1081,6 +1080,7 @@ MonoBehaviour:
   _wayPoints: []
   pointsRecived: []
   needPoints: 1
+  randomMode: 0
 --- !u!4 &2002940503
 Transform:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002940501}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f510ebee151ff40d9ae646f0ab343df9, type: 3}
   m_Name: 
@@ -1167,18 +1167,6 @@ MonoBehaviour:
   stepY: 60
   lr: {fileID: 1146586289}
   gides: {fileID: 7629939528093460912, guid: 56f7b036a6f5a4e739a549b0b4ca2155, type: 3}
---- !u!114 &2002940508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002940501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 463eebb2c65ae438ea26c557be61619b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2069871355
 GameObject:
   m_ObjectHideFlags: 0

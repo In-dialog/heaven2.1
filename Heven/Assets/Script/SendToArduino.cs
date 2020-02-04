@@ -7,17 +7,15 @@ using System.IO.Ports;//.Ports;
 public class SendToArduino : MonoBehaviour
 {
     ///-----------------------
-    public List<SerialController> serialController = new List<SerialController>();
+    //public List<SerialController> serialController = new List<SerialController>();
     public List<List<string>> _positionsToSend = new List<List<string>>();
     public List<List<string>> msgArrived = new List<List<string>>();
-
+    public List<ArduinoConmander> arCom = new List<ArduinoConmander>();
     GameObject SerailControl;
     ///-----------------------
     public int speed = 15000;
     bool initiateObject = true;
     public bool startProcess;
-
-    public int nrOfMachines;
     ///-----------------------
 
     private void Start()
@@ -26,6 +24,7 @@ public class SendToArduino : MonoBehaviour
         _positionsToSend.Add(new List<string>());
         msgArrived.Add(new List<string>());
         msgArrived.Add(new List<string>());
+        //arCom.Add()
 
     }
     private void Update()
@@ -36,37 +35,38 @@ public class SendToArduino : MonoBehaviour
         {
             //////////////////////////////////---------------------------------->>>>>>> Initialize conection to arduino 
             Destroy(SerailControl);
-            SerailControl = new GameObject("serial");
-            serialController = new List<SerialController>();
-
-            if (ports.Count-1 == 1)
-                for (int i = 0; i < nrOfMachines; i++)
-                {
-                    serialController.Add(SerailControl.transform.gameObject.AddComponent<SerialController>());
-                    serialController[i].enabled = false;
-                    serialController[i].portName = ports[i];
-                    serialController[i].enabled = true;
-                }
-            else
+            //serialController = new List<SerialController>();
+            for (int i = 0; i < ports.Count; i++)
             {
-                serialController.Add(SerailControl.transform.gameObject.AddComponent<SerialController>());
-                serialController[0].enabled = false;
-                serialController[0].portName = ports[0];
-                serialController[0].enabled = true;
+
+                SerailControl = new GameObject("serial");
+                SerialController sr = SerailControl.transform.gameObject.AddComponent<SerialController>();
+                sr.enabled = false;
+                sr.portName = ports[i];
+                sr.enabled = true;
+
+                ArduinoConmander arduino = new ArduinoConmander();
+                arduino.SetNumber = i;
+                arduino.SetPot = ports[i];
+                arduino.sr = sr;
+                arCom.Add(arduino);
+                Debug.Log(arCom[i].port);
+
+
             }
             initiateObject = false;
         }
         else
         {
             //////////////////////////////////---------------------------------->>>>>>> Sends to arduino
-            if (serialController.Count -1 == 1)
+            if (arCom.Count -1 == 1)
             {
-                SendData(serialController[0], 0);
-                SendData(serialController[1], 1);
+                SendData(arCom[0].SetSr, 0);
+                SendData(arCom[1].SetSr, 1);
             }
             else
             {
-                SendData(serialController[0], 0);
+                SendData(arCom[0].SetSr, 0);
             }
         }
         //////////////////////////////////---------------------------------->>>>>>> End of update

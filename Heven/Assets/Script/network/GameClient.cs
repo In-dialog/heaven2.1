@@ -42,7 +42,6 @@ public class GameClient : MonoBehaviour, INetEventListener
                 peer.Send(writer, DeliveryMethod.ReliableOrdered);
                 start = false;
             }
-
         }
         else
         {

@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ArduinoUI.cs" />
     <Compile Include="Assets\CurvedLine\CurvedLinePoint.cs" />
     <Compile Include="Assets\CurvedLine\CurvedLineRenderer.cs" />
     <Compile Include="Assets\CurvedLine\LineSmoother.cs" />
