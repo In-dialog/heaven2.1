@@ -1,0 +1,22 @@
+﻿<Properties StartupConfiguration="{9949A325-F7E9-5C6C-E47E-FAB2F42C3BB8}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/SendToArduino.cs">
+    <Files>
+      <File FileName="Assets/Script/ControlSystem.cs" Line="27" Column="13" IsPinned="True" />
+      <File FileName="Assets/SerialController/SerialController.cs" Line="48" Column="37" />
+      <File FileName="Assets/Script/SendToArduino.cs" Line="102" Column="47" />
+      <File FileName="Assets/Script/HiResScreenShots.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/network/GameClient.cs" Line="76" Column="38" />
+      <File FileName="Assets/Script/LineType.cs" Line="46" Column="1" />
+      <File FileName="Assets/Script/Mover.cs" Line="74" Column="67" />
+      <File FileName="Assets/Script/Remap.cs" Line="27" Column="27" />
+      <File FileName="Assets/Script/network/GameServer.cs" Line="144" Column="38" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="999b16f2-6b13-4b26-8950-1a7c21ead521" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
