@@ -100,6 +100,7 @@
     <Compile Include="Assets\SerialController\Threads\SerialThreadCustomDelimiter.cs" />
     <Compile Include="Assets\SerialController\Threads\SerialThreadLines.cs" />
     <Compile Include="Assets\TextPositon.cs" />
+    <Compile Include="Assets\UiComands.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

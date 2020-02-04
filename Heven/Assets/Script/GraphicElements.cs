@@ -178,14 +178,12 @@ public class GraphicElements : MonoBehaviour
 
     Vector3 Vremap(Vector3 origin)
     {
-        Vector3 temp = Vector3.zero;
         if (stepY < _step2*-1)
         {
-            stepX *=-1;
             stepY = _step2;
         }
-        temp = new Vector3(origin.x* 0.6f, origin.y * 0.6f, 0);
-        temp = new Vector3(temp.x - stepX, temp.y+stepY, 0);
+        Vector3 temp = new Vector3(origin.x* 0.8f, origin.y * 0.8f, 0);
+        temp = new Vector3(temp.x -160, temp.y+stepY, 0);
         return temp;
     }
 

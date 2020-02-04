@@ -8,45 +8,52 @@ public class ControlSystem : MonoBehaviour
     public List<Vector3> pointsRecived = new List<Vector3>();
 
     public List<LineProperties> lineProperties = new List<LineProperties>();
-    public bool needPoints;
+     bool needPoints =false;
+
     public bool randomMode;
+
+    public void ActivateObject(bool active)
+    {
+        needPoints = active;
+    }
+
 
     void Update()
     {
-        if (randomMode)
-        {
-            if (_wayPoints.Count < 1)
+    
+            if (randomMode)
             {
-                _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(0);
+                if (_wayPoints.Count < 1)
+                {
+                    _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(0);
 
-            }
-        }
-        else
-        {
-            if (needPoints)
-            {
-                FindObjectOfType<GameClient>().start = true;
-                needPoints = false;
-            }
-
-            if (_wayPoints.Count < 1)
-            {
-                _wayPoints = new List<Vector3>(pointsRecived);
-                pointsRecived.Clear();
-                print("No Oints");
-
+                }
             }
             else
-                print("I Have Oints");
-
-            if (lineProperties.Count > 100)
             {
-                lineProperties.Clear();
-                lineProperties = new List<LineProperties>();
+                if (needPoints)
+                {
+                    FindObjectOfType<GameClient>().start = true;
+                    needPoints = false;
+                }
+
+                if (_wayPoints.Count < 1)
+                {
+                    _wayPoints = new List<Vector3>(pointsRecived);
+                    pointsRecived.Clear();
+                    print("No Oints");
+
+                }
+                else
+                    print("I Have Oints");
+
+                if (lineProperties.Count > 100)
+                {
+                    lineProperties.Clear();
+                    lineProperties = new List<LineProperties>();
+                }
             }
-        }
     }
- 
 
     public LineProperties SetLine
     {
@@ -86,8 +93,9 @@ public class ControlSystem : MonoBehaviour
         }
     }
 
-    string CreateComands(LineProperties inLine)
+    string CreateComands(LineProperties inLine )
     {
+
         int scale = 1;
         string lineType = inLine.type;
         string comand = "null";

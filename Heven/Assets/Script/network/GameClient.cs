@@ -17,6 +17,7 @@ public class GameClient : MonoBehaviour, INetEventListener
     private float _lerpTime;
     public bool start;
    public bool finish;
+    public bool conected;
     void Start()
     {
         _netClient = new NetManager(this);
@@ -57,6 +58,7 @@ public class GameClient : MonoBehaviour, INetEventListener
 
     public void OnPeerConnected(NetPeer peer)
     {
+        conected = true;
         Debug.Log("[CLIENT] We connected to " + peer.EndPoint);
     }
 
@@ -102,6 +104,8 @@ public class GameClient : MonoBehaviour, INetEventListener
 
     public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
     {
+        conected = false;
+
         Debug.Log("[CLIENT] We disconnected because " + disconnectInfo.Reason);
     }
 

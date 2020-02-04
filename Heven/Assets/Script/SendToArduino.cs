@@ -27,6 +27,10 @@ public class SendToArduino : MonoBehaviour
         //arCom.Add()
 
     }
+    public void setBool(bool value)
+    {
+        startProcess = value;
+    }
     private void Update()
     {
         List<string> ports = ExtensionMethods.GetPortNames();
@@ -50,10 +54,11 @@ public class SendToArduino : MonoBehaviour
                 arduino.SetPot = ports[i];
                 arduino.sr = sr;
                 arCom.Add(arduino);
-                Debug.Log(arCom[i].port);
+                //Debug.Log(arCom[i].port);
 
 
             }
+            FindObjectOfType<ArduinoUI>().Activate(true);
             initiateObject = false;
         }
         else
@@ -78,11 +83,12 @@ public class SendToArduino : MonoBehaviour
 
         if (msgArrived[i].Count >= 1)
         {
-            print(msgArrived[i].Count);
+            //print(msgArrived[i].Count);
             if (msgArrived[i][0].Contains("Grbl"))
             {
                 _serialController.SendSerialMessage("G00X00Y00" + "F" + speed);
                 msgArrived[i].RemoveAt(0);
+                arCom[i].connectedOn = true;
 
             }
             else if (msgArrived[i][0].Contains("ok") & _positionsToSend[i].Count > 0)
