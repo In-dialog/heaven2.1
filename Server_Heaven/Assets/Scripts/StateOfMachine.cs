@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StateOfMachine : MonoBehaviour
 {
     public bool state;
     private static StateOfMachine instance;
-    //public static Vector3;
 
     public bool SetSate
     {
         set
         {
+
             state = value;
         }
         get

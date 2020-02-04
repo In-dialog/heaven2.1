@@ -34,7 +34,7 @@ namespace SimpleKeplerOrbits
 		/// The time scale multiplier.
 		/// </summary>
 		[Tooltip("The time scale multiplier.")]
-		public float TimeScale = 1f;
+		public float TimeScale = 100f;
 
 		/// <summary>
 		/// The orbit data.
@@ -76,7 +76,9 @@ namespace SimpleKeplerOrbits
 
 		private void OnEnable()
 		{
-			ForceUpdateOrbitData();
+            TimeScale = 1000;
+
+            ForceUpdateOrbitData();
 #if UNITY_EDITOR
 			if (!Application.isPlaying)
 			{

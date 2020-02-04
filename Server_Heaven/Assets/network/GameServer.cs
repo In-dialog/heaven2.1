@@ -12,6 +12,8 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
     //private NetDataWriter _dataWriter;
     public bool Start_conection;
     public PathFinding pathfound;
+    public float Count_Peers = 0;
+    public bool Restart_calc = false;
 
     void Start()
     {
@@ -91,33 +93,50 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
         string req = reader.GetString();
         if (req == "IWantPoints")
         {
-            Debug.Log(pathfound.GetBestPoints().Length);
-            if (pathfound.GetBestPoints().Length - 1 < 1 && StateOfMachine.Instance.SetSate == false)
-            {
-                Debug.Log("UAAAaaaadasdasdasdasd");
-                //StartCoroutine(FindObjectOfType<GetLocationAroundMe>().ExecuteAfterTime(10f));
-                StateOfMachine.Instance.SetSate = true;
-            }
-            else
-            {
-                SendPoint(pathfound.GetBestPoints(), peer);
-            }
-            ///////---->list of point
-            ////////_---->pathFinding.bestObstions
+
+            Debug.Log("The slave wants points");
+            StateOfMachine.Instance.SetSate = true;
+
+        }
+            ////Debug.Log(pathfound.GetBestPoints().Length);
+            //Debug.Log(Restart_calc);
+            //if ((pathfound.GetBestPoints().Length - 2 < 1 && StateOfMachine.Instance.SetSate == false))
+            //{
+            //    Debug.Log("I Want Points");
+            //    FindObjectOfType<GetLocationAroundMe>().Working = true;
+            //    //StartCoroutine(FindObjectOfType<GetLocationAroundMe>().ExecuteAfterTime(10f));
+            //    StateOfMachine.Instance.SetSate = true;
+            //    Restart_calc = false;
+            //}
+            //else
+            //{
+            //    SendPoint(pathfound.GetBestPoints(), peer);
+            //    pathfound.Reset_array();
+            //}
+            /////---->list of point
+            //pathFinding.bestObstions
             ///
 
 
             //SendPoint(vectors, peer);
-        }
-        else if (req == "Finish")
-        {
-            //// count ++ ; if count == pear.count count =0;
-            /// RecalculateDrawing;
-        }
+        
+        //if (req == "Finish")
+        //{
+        //    Count_Peers += 0.5f;
+        //    if (Count_Peers >= _ourPeer.Count)
+        //    {
+        //        Debug.Log("Finished");
+        //        Restart_calc = true;
+        //        //FindObjectOfType<PathFinding>().Reset_array();
+        //        Count_Peers = 0;
+        //    }
+        //    //// count ++ ; if count == pear.count count =0;
+        //    /// RecalculateDrawing;
+        //}
 
 
     }
-    public void SendPoint(Vector3[] marker, NetPeer peer)
+    public void SendPoint(Vector3[] marker)
     {
         NetDataWriter writer = new NetDataWriter();
         writer.Put("PathIncomig");
@@ -126,7 +145,10 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
         {
             Vector3Packet.Serialize(writer, marker[i]);
         }
-        peer.Send(writer, DeliveryMethod.ReliableOrdered);
+        foreach (var item in _ourPeer)
+        {
+            item.Send(writer, DeliveryMethod.ReliableOrdered);
+        }
     }
 
 
