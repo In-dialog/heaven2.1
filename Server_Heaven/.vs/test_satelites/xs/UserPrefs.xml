@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{6529FCB4-EBE7-EB0A-A29A-EAC5A93FAD52}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GetLocationAroundMe.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Read_data.cs" Line="27" Column="19" />
+      <File FileName="Assets/Scripts/Satalite_Manager.cs" Line="24" Column="15" />
+      <File FileName="Assets/network/GameServer.cs" Line="98" Column="97" />
+      <File FileName="Assets/Scripts/StateOfMachine.cs" Line="9" Column="29" />
+      <File FileName="Assets/Scripts/Plane.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PathFinding.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Satalite_cord.cs" Line="28" Column="28" NotebookId="1" />
+      <File FileName="Assets/Scripts/GetLocationAroundMe.cs" Line="46" Column="35" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="3fe29437-99dc-4cec-8c7b-de33f863a1af" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/segalcodin/Documents/Programing/Unity/test_satelites/Assets/Scripts/test.cs" relfile="Assets/Scripts/test.cs" line="80" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
