@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -67,6 +66,7 @@ public class GameClient : MonoBehaviour, INetEventListener
         Debug.Log("[CLIENT] We received error " + socketErrorCode);
     }
 
+
     public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
     {
         ControlSystem cs = FindObjectOfType<ControlSystem>();
@@ -74,12 +74,14 @@ public class GameClient : MonoBehaviour, INetEventListener
         int lenth = reader.GetInt();
         if (req == "PathIncomig")
         {
-            cs.pointsRecived.Clear();
-            for (int i = 0; i < lenth; i++)
+                List<Vector3> temp = new List<Vector3>();
+                for (int i = 0; i < lenth/2; i++)
                 {
                     Vector3 pos = Vector3Packet.Deserialize(reader);
-                    cs.pointsRecived.Add(pos);
+                    temp.Add(pos);
                 }
+                cs._wayPoints.AddRange(temp);
+                temp.Clear();
         }
     }
 
@@ -87,7 +89,7 @@ public class GameClient : MonoBehaviour, INetEventListener
     {
         if (messageType == UnconnectedMessageType.BasicMessage && _netClient.ConnectedPeersCount == 0 && reader.GetInt() == 1)
         {
-            Debug.Log("[CLIENT] Received discovery response. Connecting to: " + remoteEndPoint);
+            //Debug.Log("[CLIENT] Received discovery response. Connecting to: " + remoteEndPoint);
             _netClient.Connect(remoteEndPoint, "sample_app");
         }
     }

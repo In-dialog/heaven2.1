@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class ArduinoUI : MonoBehaviour
@@ -29,7 +28,7 @@ public class ArduinoUI : MonoBehaviour
             img.color = new Color(0, 1, 0, 0.4f);
         else
             img.color = new Color(0, 0.5f, 0.5f, 0.4f);
-        print(ToArduino.arCom.Count);
+        //print(ToArduino.arCom.Count);
         if (atStart)
         {
             Vector3 temp = prefacDisplay.transform.localPosition;
@@ -52,7 +51,7 @@ public class ArduinoUI : MonoBehaviour
             else
                 containers[i].GetComponentInChildren<Image>().color = new Color(1, 0, 0, 0.4f);
 
-            print(ToArduino.arCom[i].port);
+            //print(ToArduino.arCom[i].port);
         }
 
     }

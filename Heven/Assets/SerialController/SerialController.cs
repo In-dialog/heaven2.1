@@ -45,7 +45,7 @@ public class SerialController : MonoBehaviour
 
     [Tooltip("Maximum number of unread data messages in the queue. " +
              "New messages will be discarded.")]
-    public int maxUnreadMessages = 2;
+    public int maxUnreadMessages = 10;
 
 
 

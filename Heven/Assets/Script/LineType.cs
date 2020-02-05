@@ -57,6 +57,7 @@ public class ArduinoConmander
     public SerialController sr;
     public int nrOfMachine;
     public bool connectedOn;
+    public string machineType;
 
     string _origin = "G0X????Y?????";
 
@@ -64,7 +65,13 @@ public class ArduinoConmander
     {
     }
 
-    
+    public string SetMachineType 
+    {
+        set
+        {
+            machineType = value;
+        }
+    }
     public SerialController SetSr
     {
         set
