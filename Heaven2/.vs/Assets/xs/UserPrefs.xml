@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{17533FA3-357A-CEC6-ED1C-9FA92629C572}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/network/GameServer.cs">
+    <Files>
+      <File FileName="Library/PackageCache/com.unity.postprocessing@2.1.7/PostProcessing/Runtime/Effects/AmbientOcclusion.cs" Line="179" Column="1" />
+      <File FileName="Assets/ReplaceText.cs" Line="1" Column="1" />
+      <File FileName="Assets/ArduinoUI.cs" Line="6" Column="19" />
+      <File FileName="Assets/Script/GraphicElements.cs" Line="90" Column="27" />
+      <File FileName="Assets/Script/Restart.cs" Line="12" Column="72" />
+      <File FileName="Assets/Script/Mover.cs" Line="81" Column="14" />
+      <File FileName="Assets/Script/SendToArduino.cs" Line="49" Column="24" />
+      <File FileName="Assets/Script/ControlSystem.cs" Line="1" Column="1" />
+      <File FileName="Assets/Script/network/GameClient.cs" Line="78" Column="44" />
+      <File FileName="Assets/Script/network/GameServer.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c9866efa-5b2c-4e15-8292-51f5a7ca1d26" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
