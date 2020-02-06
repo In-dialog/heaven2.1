@@ -18,15 +18,17 @@ public class Mover : MonoBehaviour
     {
         if (targe != Vector3.zero)
         {
+            Transform myTransform = this.transform;
             if (restart)
             {
                 lineProperties = new LineProperties();
-                lineProperties.LR = OrientationOfTarget(transform.forward, targe, transform.up);
+                lineProperties.LR = OrientationOfTarget(myTransform.forward, targe, myTransform.up);
                 lineProperties.center = CalculateCenter(targe, lineProperties.LR);
                 restart = false;
             }
+            int angle = (int)FindAngle(lineProperties.center.position, myTransform.position, targe);
+            Debug.Log(angle +" Center  "+ lineProperties.center.position+"  ourPosition  "+ myTransform.position +"  the target "+ targe);
 
-            int angle = (int)FindAngle(lineProperties.center.position, transform.position, targe);
             //////////////////////////////////---------------------------------->>>>>>> If object is not in front rotate around a point towords the trget
             if (Mathf.Abs(angle - 90) > Mathf.Epsilon && !ontarget)
             {
@@ -47,7 +49,7 @@ public class Mover : MonoBehaviour
             {
             //////////////////////////////////---------------------------------->>>>>>> Else if object is in front go towords object
                 ontarget = true;
-                if (transform.position != targe)
+                if (myTransform.position != targe)
                 {
                     if (!firstTime)
                     {
@@ -71,7 +73,8 @@ public class Mover : MonoBehaviour
             
                 }
             }
-        }else targe = FindObjectOfType<ControlSystem>().GetTarget;
+        }
+        else targe = FindObjectOfType<ControlSystem>().GetTarget;
     }
 
     Transform CalculateCenter(Vector3 _target, int orientation)

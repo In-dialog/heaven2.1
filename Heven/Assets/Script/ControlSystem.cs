@@ -1,52 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlSystem : MonoBehaviour
 {
-   public List<Vector3> _wayPoints = new List<Vector3>();
-    public List<Vector3> pointsRecived = new List<Vector3>();
-
+    public List<Vector3> _wayPoints = new List<Vector3>();
     public List<LineProperties> lineProperties = new List<LineProperties>();
-    public bool needPoints;
+    bool needPoints;
     public bool randomMode;
+
+    public void ActivateObject(bool active)
+    {
+        needPoints = active;
+    }
+
 
     void Update()
     {
-        if (randomMode)
-        {
-            if (_wayPoints.Count < 1)
-            {
-                _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(0);
 
-            }
-        }
-        else
-        {
-            if (needPoints)
+            if (randomMode)
             {
-                FindObjectOfType<GameClient>().start = true;
-                needPoints = false;
+                if (_wayPoints.Count < 1)
+                {
+                    _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(0);
+                }
             }
 
-            if (_wayPoints.Count < 1)
-            {
-                _wayPoints = new List<Vector3>(pointsRecived);
-                pointsRecived.Clear();
-                print("No Oints");
-
-            }
             else
-                print("I Have Oints");
-
-            if (lineProperties.Count > 100)
             {
-                lineProperties.Clear();
-                lineProperties = new List<LineProperties>();
-            }
+                if (_wayPoints.Count == 4)
+                {
+                    needPoints = true;
+                }
+                if (_wayPoints.Count  < 1 & needPoints)
+                {
+                    FindObjectOfType<GameClient>().start = true;
+                    needPoints = false;
+                }
+
+                else
+                {
+                    //print("I Have Oints");
+                }
+
+                if (lineProperties.Count > 100)
+                {
+                    lineProperties.Clear();
+                    lineProperties = new List<LineProperties>();
+                }
         }
     }
- 
 
     public LineProperties SetLine
     {
@@ -54,7 +56,7 @@ public class ControlSystem : MonoBehaviour
         {
             _ = new LineProperties();
             LineProperties temp = value;
-            Debug.Log(temp.type);
+            //Debug.Log(temp.type);
             lineProperties.Add(temp);
             FindObjectOfType<GraphicElements>().InstanceObject(temp);
             FindObjectOfType<GraphicElements>().CreatePoints(temp);
@@ -64,6 +66,9 @@ public class ControlSystem : MonoBehaviour
             {
                 FindObjectOfType<SendToArduino>()._positionsToSend[0].Add(comand);
                 FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
+
+
+                //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
             }
         }
 
@@ -92,8 +97,9 @@ public class ControlSystem : MonoBehaviour
         string lineType = inLine.type;
         string comand = "null";
         if (lineType == "Arc")
-        {   if(lineProperties.Count>1)
-            comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine)-1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
+        {
+            if (lineProperties.Count > 1)
+                comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
             if (inLine.LR == 1)
                 comand = "G03X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
             if (inLine.LR == -1)
@@ -101,10 +107,37 @@ public class ControlSystem : MonoBehaviour
         }
         if (lineType == "Line")
         {
-            comand = "G01X" + -inLine.endPosition.y * scale + "Y"+ -inLine.endPosition.x * scale;
+            comand = "G01X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale;
         }
         return comand;
     }
+
+    //string CreateComandsForPolargraph(LineProperties inLine)
+    //{
+    //    Vector3 ancor = new Vector3(-198, 10, 0);
+    //    Vector3 ancor2 = new Vector3(198, 10, 0);
+
+    //    int scale = 1;
+    //    string lineType = inLine.type;
+    //    string comand = "null";
+    //    if (lineType == "Arc")
+    //    {
+    //        //if (lineProperties.Count > 1)
+    //        //    comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
+    //        //if (inLine.LR == 1)
+    //        //    comand = "G03X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
+    //        //if (inLine.LR == -1)
+    //        //    comand = "G02X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
+    //    }
+    //    if (lineType == "Line")
+    //    {
+    //        float distanceX = Vector3.Distance(ancor, inLine.endPosition);
+    //        float distanceY = Vector3.Distance(ancor2, inLine.endPosition);
+
+    //        comand = "G01X" + -distanceX * scale + "Y" + distanceY * scale;
+    //    }
+    //    return comand;
+    //}
 
 
 }

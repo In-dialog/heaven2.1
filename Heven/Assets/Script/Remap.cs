@@ -27,10 +27,10 @@ public static class ExtensionMethods
         // Are we on Unix?
         if (p == 4 || p == 128 || p == 6)
         {
-            string[] ttys = System.IO.Directory.GetFiles("/dev/", "tty.*");
+            string[] ttys = System.IO.Directory.GetFiles("/dev/", "cu.*");
             foreach (string dev in ttys)
             {
-                if (dev.StartsWith("/dev/tty.usbmodem"))
+                if (dev.StartsWith("/dev/cu.usbmodem"))
                 {
                     if (!ports.Contains(dev))
                         ports.Add(dev);

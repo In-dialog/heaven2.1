@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 public class ReplaceText : MonoBehaviour
 {
@@ -17,20 +15,12 @@ public class ReplaceText : MonoBehaviour
     int count;
     float lenth;
 
-
-
-
-    //public GameObject _object;
-
-    // Start is called before the first frame update
     void Start()
     {
         original = text.text;
         original2 = text2.text;
         original3 = text3.text;
         original4 = text4.text;
-
-
     }
 
     // Update is called once per frame

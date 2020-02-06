@@ -56,6 +56,8 @@ public class ArduinoConmander
     public  string port;
     public SerialController sr;
     public int nrOfMachine;
+    public bool connectedOn;
+    public string machineType;
 
     string _origin = "G0X????Y?????";
 
@@ -63,7 +65,13 @@ public class ArduinoConmander
     {
     }
 
-    
+    public string SetMachineType 
+    {
+        set
+        {
+            machineType = value;
+        }
+    }
     public SerialController SetSr
     {
         set
@@ -78,24 +86,24 @@ public class ArduinoConmander
 
     public void MoveForword (int step)
     {
-        stepsX =+ step;
+        stepsX += step;
         sr.SendSerialMessage("G0X"+stepsX+"Y"+stepsY);
     }
 
     public void MoveBack( int step)
     {
-        stepsX = -step;
+        stepsX  -=step;
         sr.SendSerialMessage("G0X" + stepsX + "Y" + stepsY);
 
     }
     public void MoveLeft( int step)
     {
-        stepsY = +step;
+        stepsY += step;
         sr.SendSerialMessage("G0X" + stepsX + "Y" + stepsY);
     }
     public void MoveRight( int step)
     {
-        stepsY = -step;
+        stepsY -= step;
         sr.SendSerialMessage("G0X" + stepsX + "Y" + stepsY);
     }
 

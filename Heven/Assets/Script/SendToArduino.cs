@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.IO.Ports;//.Ports;
 
 public class SendToArduino : MonoBehaviour
 {
@@ -11,21 +8,29 @@ public class SendToArduino : MonoBehaviour
     public List<List<string>> _positionsToSend = new List<List<string>>();
     public List<List<string>> msgArrived = new List<List<string>>();
     public List<ArduinoConmander> arCom = new List<ArduinoConmander>();
+    public List<ArduinoConmander> arduinoConmanders = new List<ArduinoConmander>();
+
     GameObject SerailControl;
     ///-----------------------
     public int speed = 15000;
     bool initiateObject = true;
     public bool startProcess;
+    int count;
+    int delay;
     ///-----------------------
 
     private void Start()
     {
         _positionsToSend.Add(new List<string>());
         _positionsToSend.Add(new List<string>());
-        msgArrived.Add(new List<string>());
-        msgArrived.Add(new List<string>());
-        //arCom.Add()
 
+        msgArrived.Add(new List<string>());
+        msgArrived.Add(new List<string>());
+
+    }
+    public void setBool(bool value)
+    {
+        startProcess = value;
     }
     private void Update()
     {
@@ -40,37 +45,39 @@ public class SendToArduino : MonoBehaviour
             {
 
                 SerailControl = new GameObject("serial");
-                SerialController sr = SerailControl.transform.gameObject.AddComponent<SerialController>();
-                sr.enabled = false;
+                SerailControl.transform.gameObject.AddComponent<SerialController>().enabled = false;
+                SerialController sr = SerailControl.GetComponent<SerialController>();
                 sr.portName = ports[i];
+                sr.enabled = false;
                 sr.enabled = true;
 
                 ArduinoConmander arduino = new ArduinoConmander();
-                arduino.SetNumber = i;
+                arduino.SetNumber = 1;
                 arduino.SetPot = ports[i];
                 arduino.sr = sr;
                 arCom.Add(arduino);
-                Debug.Log(arCom[i].port);
-
 
             }
+            FindObjectOfType<ArduinoUI>().Activate(true);
             initiateObject = false;
         }
-        else
+        else if(delay==60)
         {
-            //////////////////////////////////---------------------------------->>>>>>> Sends to arduino
-            if (arCom.Count -1 == 1)
+
+            for (int i = 0; i < arCom.Count; i++)
             {
-                SendData(arCom[0].SetSr, 0);
-                SendData(arCom[1].SetSr, 1);
+                SendData(arCom[i].SetSr, i);
+                print("----------->  " + arCom[i].nrOfMachine);
             }
-            else
-            {
-                SendData(arCom[0].SetSr, 0);
-            }
+ 
+            if (arCom[0].nrOfMachine != 0 & count==2)
+                arCom.Reverse();
+            delay = 0;
         }
+        delay++;
         //////////////////////////////////---------------------------------->>>>>>> End of update
     }
+
 
     void SendData(SerialController _serialController,int i) 
         {
@@ -78,12 +85,18 @@ public class SendToArduino : MonoBehaviour
 
         if (msgArrived[i].Count >= 1)
         {
-            print(msgArrived[i].Count);
+            //print(msgArrived[i][0]);
             if (msgArrived[i][0].Contains("Grbl"))
             {
+                if (msgArrived[i][0].Contains("XY"))
+                {
+                    arCom[i].SetNumber = 0;
+                }
+      
                 _serialController.SendSerialMessage("G00X00Y00" + "F" + speed);
                 msgArrived[i].RemoveAt(0);
-
+                arCom[i].connectedOn = true;
+                count++;
             }
             else if (msgArrived[i][0].Contains("ok") & _positionsToSend[i].Count > 0)
             {
@@ -97,12 +110,10 @@ public class SendToArduino : MonoBehaviour
             else if (msgArrived[i][0].Contains("error") )
             {
                 Debug.Log("coruptdata");
-                //_positionsToSend[i].Remove(_positionsToSend[i][0]);
                 _serialController.SendSerialMessage("G0");
                 if(_positionsToSend[i].Count-1>0)
                 _positionsToSend[i].RemoveAt(0);
                 msgArrived[i].RemoveAt(0);
-
             }
         }
     }

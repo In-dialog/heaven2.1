@@ -45,7 +45,7 @@ public class SerialController : MonoBehaviour
 
     [Tooltip("Maximum number of unread data messages in the queue. " +
              "New messages will be discarded.")]
-    public int maxUnreadMessages = 2;
+    public int maxUnreadMessages = 10;
 
 
 
@@ -69,15 +69,7 @@ public class SerialController : MonoBehaviour
     // ------------------------------------------------------------------------
     void OnEnable()
     {
-        serialThread = new SerialThreadLines(portName, 
-                                             baudRate, 
-                                             reconnectionDelay,
-                                             maxUnreadMessages);
-        //if (portName.Contains("COM3")) return;
-        //print("I have port: " + portName);
-
-        thread = new Thread(new ThreadStart(serialThread.RunForever));
-        thread.Start();
+ 
     }
 
     // ------------------------------------------------------------------------
@@ -114,25 +106,39 @@ public class SerialController : MonoBehaviour
     // special messages that mark the start/end of the communication with the
     // device.
     // ------------------------------------------------------------------------
+    bool firstTime = true;
     void Update()
     {
-        // If the user prefers to poll the messages instead of receiving them
-        // via SendMessage, then the message listener should be null.
-        if (messageListener == null)
-            return;
+        if (portName != "COM3")
+        {
+            if (firstTime)
+            {
+                serialThread = new SerialThreadLines(portName,
+                                              baudRate,
+                                              reconnectionDelay,
+                                              maxUnreadMessages);
+                thread = new Thread(new ThreadStart(serialThread.RunForever));
+                thread.Start();
+                firstTime = false;
+            }
+            // If the user prefers to poll the messages instead of receiving them
+            // via SendMessage, then the message listener should be null.
+            if (messageListener == null)
+                return;
 
-        // Read the next message from the queue
-        string message = (string)serialThread.ReadMessage();
-        if (message == null)
-            return;
+            // Read the next message from the queue
+            string message = (string)serialThread.ReadMessage();
+            if (message == null)
+                return;
 
-        // Check if the message is plain data or a connect/disconnect event.
-        if (ReferenceEquals(message, SERIAL_DEVICE_CONNECTED))
-            messageListener.SendMessage("OnConnectionEvent", true);
-        else if (ReferenceEquals(message, SERIAL_DEVICE_DISCONNECTED))
-            messageListener.SendMessage("OnConnectionEvent", false);
-        else
-            messageListener.SendMessage("OnMessageArrived", message);
+            // Check if the message is plain data or a connect/disconnect event.
+            if (ReferenceEquals(message, SERIAL_DEVICE_CONNECTED))
+                messageListener.SendMessage("OnConnectionEvent", true);
+            else if (ReferenceEquals(message, SERIAL_DEVICE_DISCONNECTED))
+                messageListener.SendMessage("OnConnectionEvent", false);
+            else
+                messageListener.SendMessage("OnMessageArrived", message);
+        }
     }
 
     // ------------------------------------------------------------------------
