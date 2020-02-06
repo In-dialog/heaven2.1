@@ -153,6 +153,7 @@ public abstract class AbstractSerialThread
                     // As I don't know in which stage the SerialPort threw the
                     // exception I call this method that is very safe in
                     // disregard of the port's status
+                    Debug.Log(portName + "  " + baudRate);
                     CloseDevice();
 
                     // Don't attempt to reconnect just yet, wait some
@@ -189,7 +190,7 @@ public abstract class AbstractSerialThread
         serialPort.ReadTimeout = readTimeout;
         serialPort.WriteTimeout = writeTimeout;
         serialPort.Open();
-
+        
         if (enqueueStatusMessages)
             inputQueue.Enqueue(SerialController.SERIAL_DEVICE_CONNECTED);
     }

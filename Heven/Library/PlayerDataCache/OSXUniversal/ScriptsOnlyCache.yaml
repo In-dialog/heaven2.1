@@ -55,8 +55,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
-    com.unity.multiplayer-hlapi.Runtime.dll:
-    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
     Assets/s.unity:
     - Class: 1
@@ -1015,4 +1013,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/s.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heven/Heaven_0.1T.app
+  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heven/Heaven_0.1.app

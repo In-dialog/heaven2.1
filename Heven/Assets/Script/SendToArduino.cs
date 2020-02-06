@@ -45,9 +45,10 @@ public class SendToArduino : MonoBehaviour
             {
 
                 SerailControl = new GameObject("serial");
-                SerialController sr = SerailControl.transform.gameObject.AddComponent<SerialController>();
-                sr.enabled = false;
+                SerailControl.transform.gameObject.AddComponent<SerialController>().enabled = false;
+                SerialController sr = SerailControl.GetComponent<SerialController>();
                 sr.portName = ports[i];
+                sr.enabled = false;
                 sr.enabled = true;
 
                 ArduinoConmander arduino = new ArduinoConmander();
