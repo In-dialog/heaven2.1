@@ -5,18 +5,15 @@ using UnityEngine;
 public class GetLocationAroundMe : MonoBehaviour
 {
 
-    public Vector2 CurrentPosition;
-    public Transform SataliteManager;
-
-    public bool Working;
-    public GameObject Plane;
-
+    public Vector2      CurrentPosition;
+    public Transform    SataliteManager;
+    public bool         Working;
+    public GameObject   Plane;
 
     private const float kRadiusOfEarth = 50;
-    private Vector3 pos;
-    private GameObject tmp_plane;
-
-    GameObject tempTrs;
+    private Vector3     pos;
+    private GameObject  tmp_plane;
+    private GameObject  tempTrs;
 
     void Start()
     {
@@ -28,18 +25,15 @@ public class GetLocationAroundMe : MonoBehaviour
 
     private void Update()
     {
-        //SataliteManager.gameObject.SetActive(true);
-        if (StateOfMachine.Instance.SetSate == true)
+        if (StateOfMachine.Instance.SetSate == true | Working == true)
         {
             FindObjectOfType<PathFinding>().SetPoints = GetRayHit();
-            Debug.Log("I am getting the points for pathfinding");
+            Debug.Log("------------Launching pathfinder-----------");
+            Working = false;
             StateOfMachine.Instance.SetSate = false;
             SataliteManager.gameObject.SetActive(false);
-
         }
     }
-
-
 
     List<Vector3> GetRayHit()
     {

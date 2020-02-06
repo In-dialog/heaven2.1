@@ -7,13 +7,11 @@ using LiteNetLib.Utils;
 using System.Collections.Generic;
 public class GameServer : MonoBehaviour, INetEventListener, INetLogger
 {
-    private NetManager _netServer;
+    private NetManager     _netServer;
     private List <NetPeer> _ourPeer = new List<NetPeer>();
     //private NetDataWriter _dataWriter;
-    public bool Start_conection;
-    public PathFinding pathfound;
-    public float Count_Peers = 0;
-    public bool Restart_calc = false;
+    public bool         Start_conection;
+    public int        Count_Peers = 0;
 
     void Start()
     {
@@ -50,8 +48,11 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
     public void OnPeerConnected(NetPeer peer)
     {
         Debug.Log("[SERVER] We have new peer " + peer.EndPoint);
-        if(!_ourPeer.Contains(peer))
-        _ourPeer.Add(peer);
+        if (!_ourPeer.Contains(peer))
+        {
+            _ourPeer.Add(peer);
+            Count_Peers++;
+        }
     }
 
     public void OnNetworkError(IPEndPoint endPoint, SocketError socketErrorCode)
@@ -85,7 +86,10 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
         Debug.Log("[SERVER] peer disconnected " + peer.EndPoint + ", info: " + disconnectInfo.Reason);
 
         if (_ourPeer.Contains(peer))
+        {
             _ourPeer.Remove(peer);
+            Count_Peers--;
+        }
     }
   
     public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
@@ -93,49 +97,12 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
         string req = reader.GetString();
         if (req == "IWantPoints")
         {
-
             Debug.Log("The slave wants points");
             StateOfMachine.Instance.SetSate = true;
-
         }
-            ////Debug.Log(pathfound.GetBestPoints().Length);
-            //Debug.Log(Restart_calc);
-            //if ((pathfound.GetBestPoints().Length - 2 < 1 && StateOfMachine.Instance.SetSate == false))
-            //{
-            //    Debug.Log("I Want Points");
-            //    FindObjectOfType<GetLocationAroundMe>().Working = true;
-            //    //StartCoroutine(FindObjectOfType<GetLocationAroundMe>().ExecuteAfterTime(10f));
-            //    StateOfMachine.Instance.SetSate = true;
-            //    Restart_calc = false;
-            //}
-            //else
-            //{
-            //    SendPoint(pathfound.GetBestPoints(), peer);
-            //    pathfound.Reset_array();
-            //}
-            /////---->list of point
-            //pathFinding.bestObstions
-            ///
-
-
-            //SendPoint(vectors, peer);
-        
-        //if (req == "Finish")
-        //{
-        //    Count_Peers += 0.5f;
-        //    if (Count_Peers >= _ourPeer.Count)
-        //    {
-        //        Debug.Log("Finished");
-        //        Restart_calc = true;
-        //        //FindObjectOfType<PathFinding>().Reset_array();
-        //        Count_Peers = 0;
-        //    }
-        //    //// count ++ ; if count == pear.count count =0;
-        //    /// RecalculateDrawing;
-        //}
-
-
     }
+
+
     public void SendPoint(Vector3[] marker)
     {
         NetDataWriter writer = new NetDataWriter();
