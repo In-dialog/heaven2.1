@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{12FC757D-A372-564B-FFE6-226CD5165644}</ProjectGuid>
+    <ProjectGuid>{079BD884-BDAA-7601-B58B-8461416A34F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,8 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LookAtCamera.cs" />
-    <Compile Include="Assets\Scripts\Collision.cs" />
+    <Compile Include="Assets\Camera_Controller.cs" />
     <Compile Include="Assets\Scripts\Core\Coord.cs" />
     <Compile Include="Assets\Scripts\Core\Eci.cs" />
     <Compile Include="Assets\Scripts\Core\Globals.cs" />
@@ -73,9 +72,8 @@
     <Compile Include="Assets\Scripts\Core\Site.cs" />
     <Compile Include="Assets\Scripts\Core\Tle.cs" />
     <Compile Include="Assets\Scripts\Core\Vector.cs" />
-    <Compile Include="Assets\Scripts\Eceftolla.cs" />
     <Compile Include="Assets\Scripts\GetLocationAroundMe.cs" />
-    <Compile Include="Assets\Scripts\Location.cs" />
+    <Compile Include="Assets\Scripts\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Math2d.cs" />
     <Compile Include="Assets\Scripts\Orbit\NoradBase.cs" />
     <Compile Include="Assets\Scripts\Orbit\NoradSDP4.cs" />
@@ -83,8 +81,6 @@
     <Compile Include="Assets\Scripts\Orbit\Orbit.cs" />
     <Compile Include="Assets\Scripts\Orbit\Satellite.cs" />
     <Compile Include="Assets\Scripts\PathFinding.cs" />
-    <Compile Include="Assets\Scripts\Plane.cs" />
-    <Compile Include="Assets\Scripts\Read_data.cs" />
     <Compile Include="Assets\Scripts\Remap.cs" />
     <Compile Include="Assets\Scripts\Satalite_manager.cs" />
     <Compile Include="Assets\Scripts\StateOfMachine.cs" />
@@ -107,67 +103,67 @@
     <None Include="Assets\Resources\satelites.txt" />
     <None Include="Assets\Scripts\Core\Properties\revHistory.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f6/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -347,16 +343,16 @@
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f6/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="LiteNetLib">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Assets/network/LiteNetLib.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Assets/network/LiteNetLib.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>/Users/segalcodin/Documents/Programing/Unity/_Sat_Barcelona/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f6/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

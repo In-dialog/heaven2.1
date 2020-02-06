@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{079BD884-BDAA-7601-B58B-8461416A34F3}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Camera_Controller.cs">
+    <Files>
+      <File FileName="Assets/Scripts/PathFinding.cs" Line="34" Column="32" />
+      <File FileName="Assets/Scripts/GetLocationAroundMe.cs" Line="34" Column="13" />
+      <File FileName="Assets/network/GameServer.cs" Line="91" Column="27" />
+      <File FileName="Assets/Scripts/Satalite_manager.cs" />
+      <File FileName="Assets/Camera_Controller.cs" Line="21" Column="36" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b0679e06-c1ea-4759-bce8-b0c6c7f8fb9d" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
