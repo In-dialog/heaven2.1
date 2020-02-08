@@ -10,10 +10,10 @@ public class GraphicElements : MonoBehaviour
 
     public Material mat;
     int _step = 10;
-    public int _step2 = 90;
+    public int _step2;
 
-    int count,count2,count3;
-    public int stepX =140, stepY;
+    int count,count2;
+    static int  stepY;
     LineRenderer lineRenderer;
     GameObject lineHolder;
     Vector3[] dots;
@@ -42,16 +42,16 @@ public class GraphicElements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (radiouses.Count > 1)
-        {
-            lr.positionCount = radiouses.Count;
-            lr.SetPosition(0, new Vector3( - 50, - 100, 0));
+        //if (radiouses.Count > 1)
+        //{
+        //    lr.positionCount = radiouses.Count;
+        //    lr.SetPosition(0, new Vector3( - 50, - 100, 0));
 
-            for (int i = 0; i < lr.positionCount; i++)
-            {
-                lr.SetPosition(i, new Vector3((i * 10)-50, (radiouses[i]*0.3f)-100, 0));
-            }
-        }
+        //    for (int i = 0; i < lr.positionCount; i++)
+        //    {
+        //        lr.SetPosition(i, new Vector3((radiouses[i]*0.3f)-150, lr.positionCount * 10 -(i * 10), 0));
+        //    }
+        //}
  
     }
     
@@ -111,7 +111,7 @@ public class GraphicElements : MonoBehaviour
     }
   public void CreatePoints(LineProperties lp)
     {
-        if (count2 == _step * 6)
+        if (count2 == _step * 3)
         {
             count2 = 0;
         }
@@ -156,7 +156,7 @@ public class GraphicElements : MonoBehaviour
         if (lineRenderer.positionCount >= 2)
         {
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, ep);
-            lineRenderer.startWidth = _scale/2;
+            lineRenderer.startWidth = _scale/10;
             lineRenderer.endWidth = _scale;
         }
         else
@@ -182,9 +182,10 @@ public class GraphicElements : MonoBehaviour
         {
             stepY = _step2;
         }
-        Vector3 temp = new Vector3(origin.x* 0.8f, origin.y * 0.8f, 0);
-        temp = new Vector3(temp.x -160, temp.y+stepY, 0);
-        return temp;
+        Vector3 temp = new Vector3(origin.x* 0.5f, origin.y * 0.5f, 0);
+        Vector3 distance = new Vector3(temp.x -160, temp.y + stepY, 0);
+
+        return distance;
     }
 
 

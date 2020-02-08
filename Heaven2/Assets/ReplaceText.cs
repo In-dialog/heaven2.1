@@ -35,7 +35,7 @@ public class ReplaceText : MonoBehaviour
         text.text = original + "X: [" + Mathf.Ceil(_object.transform.position.x).ToString()+ "]  Y: [" + Mathf.Ceil(_object.transform.position.y).ToString() + "]";
         text2.text = original2 + "" + temp.Count;
         text3.text = original3 + Mathf.Ceil(Time.realtimeSinceStartup).ToString() + "s";
-        text4.text = original4 + (Mathf.Round(lenth)/100).ToString() + "m";
+        text4.text = original4 + (Mathf.Round(lenth)/100).ToString() + " km";
 
 
         count = temp.Count;

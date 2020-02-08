@@ -51,9 +51,9 @@ public class ArduinoUI : MonoBehaviour
                 containers[i].GetComponentInChildren<Text>().text = "V -plotter";
 
             if (ToArduino.arCom[i].connectedOn)
-                 containers[i].GetComponentInChildren<Image>().color = new Color(0,0,1,0.4f);
+                 containers[i].GetComponentInChildren<Image>().color = new Color(0,2,0,0.5f);
             else
-                containers[i].GetComponentInChildren<Image>().color = new Color(1, 0, 0, 0.4f);
+                containers[i].GetComponentInChildren<Image>().color = new Color(0.5f,0, 0.2f, 0.5f);
 
             //print(ToArduino.arCom[i].port);
         }

@@ -2,15 +2,16 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - ArduinoUI
+    - ButtonsPress
     - ControlSystem
     - CreateWayPoints
-    - DataViz
     - DimOnDistroy
     - GameClient
     - GraphicElements
     - HiResScreenShots
     - Mover
     - ReplaceText
+    - Restart
     - SendToArduino
     - UiComands
     Unity.2D.Tilemap.Editor.dll:
@@ -43,6 +44,7 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshPro
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -110,8 +112,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10320}
     - Class: 114
-      Script: {instanceID: 10334}
-    - Class: 114
       Script: {instanceID: 10458}
     - Class: 114
       Script: {instanceID: 10482}
@@ -132,6 +132,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11150}
     - Class: 114
+      Script: {instanceID: 11176}
+    - Class: 114
       Script: {instanceID: 11248}
     - Class: 114
       Script: {instanceID: 11284}
@@ -142,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11696}
     - Class: 114
+      Script: {instanceID: 11704}
+    - Class: 114
       Script: {instanceID: 11706}
     - Class: 114
       Script: {instanceID: 11766}
@@ -149,6 +153,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11820}
     - Class: 114
       Script: {instanceID: 11860}
+    - Class: 114
+      Script: {instanceID: 26896}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -376,7 +382,7 @@ ScriptsOnlyBuild:
     className: GraphicBrain
   - hash:
       serializedVersion: 2
-      Hash: ac6b6a055b4ad1433dd3cc13811f71c4
+      Hash: 1fb387f2f3cd9d024a93b8fd2bcb07c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GraphicElements
@@ -866,7 +872,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 674aedcb52db23637e26411c597077c9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonsPress
   platform: 2
   scenePathNames:
   - Assets/s.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/W.i.P-Drawing-Generator/Assets/yesy].app
+  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/heaven_1.app

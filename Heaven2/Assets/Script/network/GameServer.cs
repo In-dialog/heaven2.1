@@ -139,9 +139,9 @@ struct Vector3Packet
     public static Vector3 Deserialize(NetDataReader reader)
     {
         Vector3 res = new Vector3();
-        res.x = (reader.GetFloat()-15);
+        res.x = reader.GetFloat();
         res.z = reader.GetFloat();
-        res.y = (reader.GetFloat()+30);
-        return res *7;
+        res.y = reader.GetFloat();
+        return res;
     }
 }

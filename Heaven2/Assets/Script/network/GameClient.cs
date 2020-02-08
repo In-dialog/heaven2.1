@@ -61,23 +61,32 @@ public class GameClient : MonoBehaviour, INetEventListener
         Debug.Log("[CLIENT] We received error " + socketErrorCode);
     }
 
-
+    Vector3 center = Vector3.zero;
     public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
     {
         ControlSystem cs = FindObjectOfType<ControlSystem>();
         string req = reader.GetString();
-        int lenth = reader.GetInt();
+        if (req == "Center")
+        {
+            center = Vector3Packet.Deserialize(reader);
+            if (center.x >150 & center.y < -200)
+                center = Vector3.zero;
+        }
         if (req == "PathIncomig")
         {
-                List<Vector3> temp = new List<Vector3>();
-                for (int i = 0; i < lenth; i++)
-                {
-                    Vector3 pos = Vector3Packet.Deserialize(reader);
-                    temp.Add(pos);
-                }
-            if (cs._wayPoints.Count - lenth < 500) 
+            int lenth = reader.GetInt();
+            List<Vector3> temp = new List<Vector3>();
+            for (int i = 0; i < lenth - 1; i++)
+            {
+                Vector3 pos =  Vector3Packet.Deserialize(reader);
+                pos = new Vector3(pos.x+10, pos.y, pos.z);
+
+Vector3.RotateTowards                pos.
+                temp.Add(pos*8);
+            }
+            if (cs._wayPoints.Count - lenth < 500)
                 cs._wayPoints.AddRange(temp);
-                temp.Clear();
+           temp.Clear();
         }
     }
 

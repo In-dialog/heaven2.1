@@ -14,6 +14,7 @@ public class Mover : MonoBehaviour
     {
         center = new GameObject("Center");
     }
+ 
     void Update()
     {
         if (targe != Vector3.zero)
