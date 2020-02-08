@@ -42,14 +42,10 @@ public class PathFinding : MonoBehaviour
         
         if (satelite.Count < 1)
         {
-            Debug.Log("I am in path finding");
-            //if (pastWaight <  wight)
             if (wight < pastWaight)
             {
-                Debug.Log(wight + "<--------------- My current weight" + pastWaight + "<--------------- My past weight");
                 bestObstions = new Vector3[lr.positionCount];
                 lr.GetPositions(bestObstions);
-                Debug.Log("Sending an option with this length ----------------->" + bestObstions.Length);
                 nr_of_points_send += bestObstions.Length;
                 nr_of_paths += 1;
                 FindObjectOfType<GameServer>().SendPoint(bestObstions);

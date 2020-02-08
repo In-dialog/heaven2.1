@@ -32,7 +32,6 @@ public class GetLocationAroundMe : MonoBehaviour
         if (StateOfMachine.Instance.SetSate == true | Working == true)
         {
             FindObjectOfType<PathFinding>().SetPoints = GetRayHit();
-            Debug.Log("------------Launching pathfinder-----------");
             Working = false;
             StateOfMachine.Instance.SetSate = false;
             SataliteManager.gameObject.SetActive(false);
