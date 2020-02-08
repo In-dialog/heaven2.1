@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Satelite
   - Plane
+  - ZeroPlane
   layers:
   - Default
   - TransparentFX

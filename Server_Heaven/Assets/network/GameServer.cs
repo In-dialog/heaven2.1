@@ -10,7 +10,7 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
     private NetManager     _netServer;
     private List <NetPeer> _ourPeer = new List<NetPeer>();
     //private NetDataWriter _dataWriter;
-    public bool         Start_conection;
+    public bool Conection;
     public int        Count_Peers = 0;
 
     void Start()
@@ -29,12 +29,17 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
 
     void FixedUpdate()
     {
-        if (_ourPeer != null)
+        if (_ourPeer.Count >= 1)
         {
-            if (Start_conection)
-            {
+            Conection = true;
+            //if (Start_conection)
+            //{
              
-            }
+            //}
+        }
+        else
+        {
+            Conection = false;
         }
     }
 
@@ -107,7 +112,7 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
     {
         NetDataWriter writer = new NetDataWriter();
         writer.Put("PathIncomig");
-        writer.Put(marker.Length - 1);
+        writer.Put(marker.Length);
         for (int i = 0; i < marker.Length - 1; i++)
         {
             Vector3Packet.Serialize(writer, marker[i]);
@@ -118,6 +123,17 @@ public class GameServer : MonoBehaviour, INetEventListener, INetLogger
         }
     }
 
+    public void Send_Center(Vector3 input)
+    {
+        NetDataWriter writer = new NetDataWriter();
+        writer.Put("Center");
+        Debug.Log("----------------------Sending the center coordinates-----------------------");
+        Vector3Packet.Serialize(writer, input);
+        foreach (var item in _ourPeer)
+        {
+            item.Send(writer, DeliveryMethod.ReliableOrdered);
+        }
+    }
 
 
     public void WriteNet(NetLogLevel level, string str, params object[] args)

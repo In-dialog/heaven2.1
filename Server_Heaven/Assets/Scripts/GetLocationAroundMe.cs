@@ -15,12 +15,16 @@ public class GetLocationAroundMe : MonoBehaviour
     private GameObject  tmp_plane;
     private GameObject  tempTrs;
 
+    GameObject ourPossition;
+
     void Start()
     {
-        tempTrs  = new GameObject();
+        ourPossition = new GameObject("OurSpotOnTheMap");
+        tempTrs = new GameObject();
         pos.x = (kRadiusOfEarth) * Mathf.Cos(CurrentPosition.x) * Mathf.Cos(CurrentPosition.y);
         pos.z = (kRadiusOfEarth) * Mathf.Cos(CurrentPosition.x) * Mathf.Sin(CurrentPosition.y);
         pos.y = (kRadiusOfEarth) * Mathf.Sin(CurrentPosition.x);
+        ourPossition.transform.position = pos;
     }
 
     private void Update()
@@ -38,14 +42,21 @@ public class GetLocationAroundMe : MonoBehaviour
     List<Vector3> GetRayHit()
     {
         Destroy(tmp_plane);
-        tmp_plane = Instantiate(Plane, pos, Quaternion.identity);
+        ourPossition.transform.LookAt(SataliteManager, Vector3.up);
+
+        //tmp_plane.transform.LookAt(SataliteManager, Vector3.up);
+        //tmp_plane.transform.Rotate(tmp_plane.transform.rotation.x - 90, tmp_plane.transform.rotation.y, tmp_plane.transform.rotation.z);
+
+        tmp_plane = Instantiate(Plane, ourPossition.transform.position, ourPossition.transform.rotation);
         tmp_plane.name = "Plane";
         tmp_plane.transform.parent = this.transform;
-        tmp_plane.transform.LookAt(SataliteManager, Vector3.up);
-        tmp_plane.transform.Rotate(tmp_plane.transform.rotation.x - 90, tmp_plane.transform.rotation.y, tmp_plane.transform.rotation.z);
+
         List<Vector3> sat_around = new List<Vector3>();
         Ray landingRay;
         RaycastHit hit;
+        RaycastHit hit2;
+        Vector3 right = Vector3.zero, left = Vector3.zero, bottom = Vector3.zero, up = Vector3.zero;
+        Vector3 up_left = Vector3.zero, up_right = Vector3.zero, bottom_left = Vector3.zero, bottom_right = Vector3.zero;
         foreach (Transform sat in SataliteManager)
         {
             Vector3 Direction = sat.transform.position;
@@ -54,9 +65,16 @@ public class GetLocationAroundMe : MonoBehaviour
             {
                 if (hit.collider.tag == "Plane")
                 {
-                   Vector3 newPos = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-                   Vector3 trip = Vector3.ProjectOnPlane(hit.point, tempTrs.transform.up);
-                    sat_around.Add(trip);
+                    //Debug.DrawLine(Vector3.zero, hit.point, Color.blue);
+                    Vector3 Direction_2 = hit.collider.transform.position;
+                    landingRay = new Ray(hit.point, -Direction_2);
+                    if (Physics.Raycast(landingRay, out hit2, Mathf.Infinity))
+                    {
+                        if (hit2.collider.tag == "ZeroPlane")
+                        {
+                            sat_around.Add(hit2.point);
+                        }
+                    }
                 }
             }
         }

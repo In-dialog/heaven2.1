@@ -10,7 +10,8 @@ public class PathFinding : MonoBehaviour
     public List<Vector3>        pointFound = new List<Vector3>();
     public static Vector3[]     bestObstions;
     public List<Vector3>        originalSatelite = new List<Vector3>();
-    public Transform Satalite_manager;
+    public Transform            Satalite_manager;
+    public int                  nr_of_paths;
 
     public static PathFinding   Instance;
     public LineRenderer         lr;
@@ -26,19 +27,14 @@ public class PathFinding : MonoBehaviour
         bestObstions = new Vector3[1];
         pointFound.Add(this.transform.position);
         wight = -originalSatelite.Count;
+        nr_of_paths = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nr_of_points_send > 300)
-        {
-            StateOfMachine.Instance.SetSate = false;
-            nr_of_points_send = 0;
-        }
         if (originalSatelite.Count < 1) return;
-        //| originalSatelite.Count + pastWaight < 10
-        if (count2 >= originalSatelite.Count | (((100 - ((pastWaight * -1) / originalSatelite.Count) * 100) < 10) && count2 >= 4))
+        if (count2 >= originalSatelite.Count | (((100 - ((pastWaight * -1) / originalSatelite.Count) * 100) < 10) && count2 >= 20))
         {
             StateOfMachine.Instance.SetSate = true;
             count2 = 0;
@@ -53,8 +49,9 @@ public class PathFinding : MonoBehaviour
                 Debug.Log(wight + "<--------------- My current weight" + pastWaight + "<--------------- My past weight");
                 bestObstions = new Vector3[lr.positionCount];
                 lr.GetPositions(bestObstions);
-                Debug.Log("Send second best options and its length" + bestObstions.Length);
+                Debug.Log("Sending an option with this length ----------------->" + bestObstions.Length);
                 nr_of_points_send += bestObstions.Length;
+                nr_of_paths += 1;
                 FindObjectOfType<GameServer>().SendPoint(bestObstions);
                 pastWaight = wight;
                 Satalite_manager.gameObject.SetActive(true);

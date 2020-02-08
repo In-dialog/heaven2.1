@@ -1,16 +1,25 @@
 ﻿<Properties StartupConfiguration="{079BD884-BDAA-7601-B58B-8461416A34F3}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Camera_Controller.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Restart.cs">
     <Files>
-      <File FileName="Assets/Scripts/PathFinding.cs" Line="34" Column="32" />
-      <File FileName="Assets/Scripts/GetLocationAroundMe.cs" Line="34" Column="13" />
-      <File FileName="Assets/network/GameServer.cs" Line="91" Column="27" />
-      <File FileName="Assets/Scripts/Satalite_manager.cs" />
-      <File FileName="Assets/Camera_Controller.cs" Line="21" Column="36" />
+      <File FileName="Assets/Scripts/Camera_KeyFrames.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Camera_Settings.cs" Line="53" Column="28" />
+      <File FileName="Assets/Scripts/Satalite_manager.cs" Line="17" Column="32" />
+      <File FileName="Assets/UI_ConnectionStatus.cs" Line="24" Column="38" />
+      <File FileName="Assets/Text_PathFound.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/PathFinding.cs" Line="55" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/GetLocationAroundMe.cs" Line="12" Column="1" NotebookId="1" />
+      <File FileName="Assets/network/GameServer.cs" Line="41" Column="10" NotebookId="1" />
+      <File FileName="Assets/Scripts/Satelite_Settings.cs" Line="4" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Restart.cs" Line="33" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Camera_Controller.cs" Line="67" Column="1" NotebookId="1" />
+      <File FileName="Assets/Text_TotalSats.cs" Line="13" Column="41" NotebookId="1" />
+      <File FileName="Assets/Text_SatsAbove.cs" Line="20" Column="58" NotebookId="1" />
+      <File FileName="Assets/Text_TotalPeers.cs" Line="19" Column="45" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b0679e06-c1ea-4759-bce8-b0c6c7f8fb9d" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="56820d1d-2a05-4bd3-a7fd-9da80bfd425b" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

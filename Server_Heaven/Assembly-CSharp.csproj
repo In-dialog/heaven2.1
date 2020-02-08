@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Camera_Controller.cs" />
+    <Compile Include="Assets\Scripts\Camera_Controller.cs" />
+    <Compile Include="Assets\Scripts\Camera_KeyFrames.cs" />
+    <Compile Include="Assets\Scripts\Camera_Settings.cs" />
     <Compile Include="Assets\Scripts\Core\Coord.cs" />
     <Compile Include="Assets\Scripts\Core\Eci.cs" />
     <Compile Include="Assets\Scripts\Core\Globals.cs" />
@@ -82,7 +84,9 @@
     <Compile Include="Assets\Scripts\Orbit\Satellite.cs" />
     <Compile Include="Assets\Scripts\PathFinding.cs" />
     <Compile Include="Assets\Scripts\Remap.cs" />
+    <Compile Include="Assets\Scripts\Restart.cs" />
     <Compile Include="Assets\Scripts\Satalite_manager.cs" />
+    <Compile Include="Assets\Scripts\Satelite_Settings.cs" />
     <Compile Include="Assets\Scripts\StateOfMachine.cs" />
     <Compile Include="Assets\SimpleKeplerOrbits\Examples\JPLOrbitsLoader.cs" />
     <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Components\EllipticInterceptionSolver.cs" />
@@ -95,13 +99,18 @@
     <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Data\TransitionOrbitData.cs" />
     <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Data\Vector3d.cs" />
     <Compile Include="Assets\SimpleKeplerOrbits\Scripts\Utils\KeplerOrbitUtils.cs" />
+    <Compile Include="Assets\Text_PathFound.cs" />
+    <Compile Include="Assets\Text_SatsAbove.cs" />
+    <Compile Include="Assets\Text_TotalPeers.cs" />
+    <Compile Include="Assets\Text_TotalSats.cs" />
+    <Compile Include="Assets\UI_ConnectionStatus.cs" />
     <Compile Include="Assets\network\GameClient.cs" />
     <Compile Include="Assets\network\GameServer.cs" />
     <None Include="Assets\network\LiteNetLib.xml" />
     <None Include="Assets\SimpleKeplerOrbits\changelog.txt" />
     <None Include="Assets\SimpleKeplerOrbits\Examples\JsonTable.txt" />
-    <None Include="Assets\Resources\satelites.txt" />
     <None Include="Assets\Scripts\Core\Properties\revHistory.txt" />
+    <None Include="Assets\satelites.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
