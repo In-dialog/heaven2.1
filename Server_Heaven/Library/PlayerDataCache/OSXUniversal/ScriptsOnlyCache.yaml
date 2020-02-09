@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Camera_Controller
+    - Camera_Settings
     - GameServer
     - GetLocationAroundMe
     - LookAtCamera
@@ -10,6 +11,11 @@ ScriptsOnlyBuild:
     - Satalite_manager
     - Satelite_Settings
     - SimpleKeplerOrbits.KeplerOrbitMover
+    - Text_PathFound
+    - Text_SatsAbove
+    - Text_TotalPeers
+    - Text_TotalSats
+    - UI_ConnectionStatus
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -41,11 +47,13 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
@@ -83,41 +91,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11394}
+      Script: {instanceID: 11380}
     - Class: 114
-      Script: {instanceID: 11496}
+      Script: {instanceID: 11396}
     - Class: 114
-      Script: {instanceID: 11536}
+      Script: {instanceID: 11498}
     - Class: 114
       Script: {instanceID: 11538}
     - Class: 114
-      Script: {instanceID: 11548}
+      Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 11710}
+      Script: {instanceID: 11550}
     - Class: 114
-      Script: {instanceID: 12108}
+      Script: {instanceID: 11600}
     - Class: 114
-      Script: {instanceID: 12134}
+      Script: {instanceID: 11714}
     - Class: 114
-      Script: {instanceID: 12518}
+      Script: {instanceID: 12006}
     - Class: 114
-      Script: {instanceID: 12580}
+      Script: {instanceID: 12080}
     - Class: 114
-      Script: {instanceID: 12916}
+      Script: {instanceID: 12118}
     - Class: 114
-      Script: {instanceID: 13314}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 13654}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 13820}
+      Script: {instanceID: 12532}
     - Class: 114
-      Script: {instanceID: 13830}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 32860}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 36622}
+      Script: {instanceID: 12930}
+    - Class: 114
+      Script: {instanceID: 13174}
+    - Class: 114
+      Script: {instanceID: 13330}
+    - Class: 114
+      Script: {instanceID: 13414}
+    - Class: 114
+      Script: {instanceID: 13672}
+    - Class: 114
+      Script: {instanceID: 13714}
+    - Class: 114
+      Script: {instanceID: 13838}
+    - Class: 114
+      Script: {instanceID: 13848}
+    - Class: 114
+      Script: {instanceID: 13862}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -195,10 +219,16 @@ ScriptsOnlyBuild:
     className: JPLOrbitsLoader
   - hash:
       serializedVersion: 2
-      Hash: 92835c6efc1a267abe6317405b86142a
+      Hash: 7da4f800686e2ad9a677374593461fe3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameServer
+  - hash:
+      serializedVersion: 2
+      Hash: eeabe5f15a30a9e4a6a05194cd605aca
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Text_TotalPeers
   - hash:
       serializedVersion: 2
       Hash: 4361d65e224d7e3c9a3869713c263ff2
@@ -285,7 +315,7 @@ ScriptsOnlyBuild:
     className: KeplerOrbitMover
   - hash:
       serializedVersion: 2
-      Hash: 85d351da76f27692016015b41dccaa63
+      Hash: 04989d8b5d5769cdda7639c6e0ef326c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PathFinding
@@ -313,6 +343,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: b35763a02a618c609f1470b03572aa83
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Satelite_Settings
   - hash:
       serializedVersion: 2
       Hash: ad9173d3a69d99153f38ed4b62226129
@@ -423,6 +459,12 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
+      Hash: 13550afd7ada6f6f25ed20235cd08835
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Text_SatsAbove
+  - hash:
+      serializedVersion: 2
       Hash: d251bf88db6c95a6b1aa0b69298da9ef
     assemblyName: UnityEngine.SpatialTracking.dll
     namespaceName: UnityEngine.SpatialTracking
@@ -439,6 +481,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: SimpleKeplerOrbits
     className: EllipticInterceptionSolver
+  - hash:
+      serializedVersion: 2
+      Hash: 915e2deec437a7d5cde0910806ebcad7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Restart
   - hash:
       serializedVersion: 2
       Hash: 303ad70ce203ad874efe2965d0fbcff9
@@ -513,6 +561,12 @@ ScriptsOnlyBuild:
     className: NetworkTransformVisualizer
   - hash:
       serializedVersion: 2
+      Hash: adfae2265212be90435314cf2d55cf30
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Camera_Settings
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -529,6 +583,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StateOfMachine
+  - hash:
+      serializedVersion: 2
+      Hash: fc0f5690ca1e3f3b76aa8bc7ecf92a5f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Text_TotalSats
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -675,6 +735,12 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: eeabe5f15a30a9e4a6a05194cd605aca
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UI_ConnectionStatus
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -709,6 +775,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 13550afd7ada6f6f25ed20235cd08835
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Text_PathFound
   - hash:
       serializedVersion: 2
       Hash: 3bcbde6e9713b58f8486cf0f8d3724e7
@@ -849,7 +921,7 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: 2cad55b279a27f4018c2ccaa6f578051
+      Hash: 7987f4ebb218de5d3e2c475f00922921
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Camera_Controller
@@ -883,18 +955,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: b35763a02a618c609f1470b03572aa83
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Satelite_Settings
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Restart
   platform: 2
   scenePathNames:
   - Assets/55.unity

@@ -113,7 +113,7 @@ public class Camera_Controller : MonoBehaviour
             transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
             transform.Translate(Vector3.forward * Input.GetAxis("Vertical") * Speed * Time.deltaTime);
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * Speed * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             AddPosition(this.transform.position, this.transform.eulerAngles);
             SaveKeyFrames();
