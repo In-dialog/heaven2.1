@@ -28,7 +28,7 @@ public class Mover : MonoBehaviour
                 restart = false;
             }
             int angle = (int)FindAngle(lineProperties.center.position, myTransform.position, targe);
-            Debug.Log(angle +" Center  "+ lineProperties.center.position+"  ourPosition  "+ myTransform.position +"  the target "+ targe);
+            //Debug.Log(angle +" Center  "+ lineProperties.center.position+"  ourPosition  "+ myTransform.position +"  the target "+ targe);
           
             //////////////////////////////////---------------------------------->>>>>>> If object is not in front rotate around a point towords the trget
             if (Mathf.Abs(angle - 90) > Mathf.Epsilon && !ontarget)
@@ -74,7 +74,7 @@ public class Mover : MonoBehaviour
             
                 }
             }
-            if (angle < -180)
+            if (angle < -181 | angle > 181)
             {
                 restart = true;
                 targe = Vector3.zero;

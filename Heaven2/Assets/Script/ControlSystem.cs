@@ -7,16 +7,21 @@ public class ControlSystem : MonoBehaviour
     public List<LineProperties> lineProperties = new List<LineProperties>();
     bool needPoints;
     public bool randomMode;
-
+    public Vector3 center;
+     public  bool noWStart;
     public void ActivateObject(bool active)
     {
         needPoints = active;
+        noWStart = !noWStart;
     }
 
 
     void Update()
     {
-
+        if (!noWStart) {
+            _wayPoints.Clear();
+            return;
+        }
             if (randomMode)
             {
                 if (_wayPoints.Count < 1)
@@ -65,11 +70,11 @@ public class ControlSystem : MonoBehaviour
             if (comand != "null")
             {
                 FindObjectOfType<SendToArduino>()._positionsToSend[0].Add(comand);
-                FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
-
-
+                //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
                 //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
             }
+            FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(ComandWall(temp, 0.6f));
+
         }
 
     }
@@ -111,7 +116,48 @@ public class ControlSystem : MonoBehaviour
         }
         return comand;
     }
+    string ComandWall(LineProperties inLine, float scale)
+    {
+        Vector3 inVector = inLine.endPosition;
 
+        string lineType = inLine.type;
+        string comand = "null";
+
+        if (lineType == "Arc")
+        {
+            if (lineProperties.Count > 1)
+                comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
+
+            if (inLine.LR == 1)
+                comand = "G03X" + -inVector.y * scale + "Y" + -inVector.x * scale + "R" + inLine.radious * scale;
+            if (inLine.LR == -1)
+                comand = "G02X" + -inVector.y * scale + "Y" + -inVector.x * scale + "R" + inLine.radious * scale;
+        }
+        if (lineType == "Line")
+        {
+            comand = "G01X" + -inVector.y * scale + "Y" + -inVector.x * scale;
+        }
+        return comand;
+    }
+
+    Vector2 Converted_Value(Vector3 Points, float distance_from_center, float distance_between_motors)
+    {
+        Vector2 result = new Vector2();
+        Vector2 Pos_Mx = new Vector2();
+        Vector2 Pos_My = new Vector2();
+
+        Pos_Mx.x = center.x - distance_between_motors / 2;
+        Pos_Mx.y = center.y + distance_from_center;
+        Pos_My.x = center.x + distance_between_motors / 2;
+        Pos_My.y = center.y + distance_from_center;
+
+        result.x = Vector2.Distance(Points, Pos_Mx)*-1;
+        result.y = Vector2.Distance(Points, Pos_My)*-1;
+        Debug.Log(result + "dsdfsfadfsdfsdfadsfds");
+
+
+        return result;
+    }
     //string CreateComandsForPolargraph(LineProperties inLine)
     //{
     //    Vector3 ancor = new Vector3(-198, 10, 0);

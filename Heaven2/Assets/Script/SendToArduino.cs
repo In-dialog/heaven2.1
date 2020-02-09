@@ -102,12 +102,12 @@ public class SendToArduino : MonoBehaviour
             {
                 string temp = _positionsToSend[i][0] + "F" + speed;
                 _serialController.SendSerialMessage(temp);
-                print(temp);
+                //print(temp);
                 _positionsToSend[i].RemoveAt(0);
                 msgArrived[i].RemoveAt(0);
 
             }
-            else if (msgArrived[i][0].Contains("error") )
+            else if (msgArrived[i][0].Contains("error"))
             {
                 Debug.Log("coruptdata");
                 _serialController.SendSerialMessage("G0");
