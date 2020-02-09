@@ -64,13 +64,18 @@ public class GetLocationAroundMe : MonoBehaviour
             {
                 if (hit.collider.tag == "Plane")
                 {
-                    //Debug.DrawLine(Vector3.zero, hit.point, Color.blue);
+                    Debug.DrawLine(Vector3.zero, hit.point, Color.red);
                     Vector3 Direction_2 = hit.collider.transform.position;
                     landingRay = new Ray(hit.point, -Direction_2);
                     if (Physics.Raycast(landingRay, out hit2, Mathf.Infinity))
                     {
                         if (hit2.collider.tag == "ZeroPlane")
                         {
+                            if (sat_around.Count< 1)
+                            {
+                                FindObjectOfType<GameServer>().Send_Center(hit2.collider.bounds.center);
+                            }
+                            Debug.DrawLine(hit.point, hit2.point, Color.blue);
                             sat_around.Add(hit2.point);
                         }
                     }

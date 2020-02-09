@@ -1,25 +1,25 @@
 ﻿<Properties StartupConfiguration="{079BD884-BDAA-7601-B58B-8461416A34F3}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Camera_KeyFrames.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/network/GameServer.cs">
     <Files>
       <File FileName="Assets/Scripts/Camera_KeyFrames.cs" Line="7" Column="1" />
-      <File FileName="Assets/Scripts/Camera_Settings.cs" Line="53" Column="28" />
-      <File FileName="Assets/Scripts/Satalite_manager.cs" Line="17" Column="32" />
-      <File FileName="Assets/UI_ConnectionStatus.cs" Line="24" Column="38" />
-      <File FileName="Assets/Text_PathFound.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/Camera_Settings.cs" />
+      <File FileName="Assets/Scripts/Satalite_manager.cs" />
+      <File FileName="Assets/UI_ConnectionStatus.cs" />
+      <File FileName="Assets/Text_PathFound.cs" />
+      <File FileName="Assets/network/GameServer.cs" Line="41" Column="10" />
       <File FileName="Assets/Scripts/PathFinding.cs" Line="49" Column="1" NotebookId="1" />
-      <File FileName="Assets/Scripts/GetLocationAroundMe.cs" Line="34" Column="69" NotebookId="1" />
-      <File FileName="Assets/network/GameServer.cs" Line="41" Column="10" NotebookId="1" />
-      <File FileName="Assets/Scripts/Satelite_Settings.cs" Line="4" Column="1" NotebookId="1" />
-      <File FileName="Assets/Scripts/Restart.cs" Line="33" Column="1" NotebookId="1" />
-      <File FileName="Assets/Scripts/Camera_Controller.cs" Line="67" Column="1" NotebookId="1" />
-      <File FileName="Assets/Text_TotalSats.cs" Line="13" Column="41" NotebookId="1" />
-      <File FileName="Assets/Text_SatsAbove.cs" Line="20" Column="58" NotebookId="1" />
-      <File FileName="Assets/Text_TotalPeers.cs" Line="19" Column="45" NotebookId="1" />
+      <File FileName="Assets/Scripts/GetLocationAroundMe.cs" Line="71" Column="22" NotebookId="1" />
+      <File FileName="Assets/Scripts/Satelite_Settings.cs" NotebookId="1" />
+      <File FileName="Assets/Scripts/Restart.cs" NotebookId="1" />
+      <File FileName="Assets/Scripts/Camera_Controller.cs" NotebookId="1" />
+      <File FileName="Assets/Text_TotalSats.cs" NotebookId="1" />
+      <File FileName="Assets/Text_SatsAbove.cs" NotebookId="1" />
+      <File FileName="Assets/Text_TotalPeers.cs" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e0f1e363-731c-4917-b01f-4b89bfa6799f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6f17a4e2-d1eb-4b4e-a25a-fbcc80aba465" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
