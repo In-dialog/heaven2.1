@@ -34,7 +34,7 @@ public class GetLocationAroundMe : MonoBehaviour
             FindObjectOfType<PathFinding>().SetPoints = GetRayHit();
             Working = false;
             StateOfMachine.Instance.SetSate = false;
-            SataliteManager.gameObject.SetActive(false);
+            //SataliteManager.gameObject.SetActive(false);
         }
     }
 

@@ -12,7 +12,7 @@ public class SendToArduino : MonoBehaviour
 
     GameObject SerailControl;
     ///-----------------------
-    public int speed = 15000;
+    public float speed = 15000;
     bool initiateObject = true;
     public bool startProcess;
     int count;
@@ -21,6 +21,8 @@ public class SendToArduino : MonoBehaviour
 
     private void Start()
     {
+        speed= PlayerPrefs.GetFloat("Arduino");
+
         _positionsToSend.Add(new List<string>());
         _positionsToSend.Add(new List<string>());
 

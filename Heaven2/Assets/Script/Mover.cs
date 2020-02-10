@@ -12,10 +12,12 @@ public class Mover : MonoBehaviour
     GameObject center;
     void Start()
     {
+        rottationSpeed = PlayerPrefs.GetFloat("PSpeed");
         center = new GameObject("Center");
     }
- 
-    void Update()
+
+  
+    void FixedUpdate()
     {
         if (targe != Vector3.zero)
         {
@@ -61,7 +63,7 @@ public class Mover : MonoBehaviour
                         firstTime = true;
                     }
 
-                    float step = rottationSpeed/2 * Time.deltaTime;
+                    float step = rottationSpeed/5 * Time.deltaTime;
                     transform.position = Vector3.MoveTowards(transform.position, targe, step);
                 }
                 else

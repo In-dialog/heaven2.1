@@ -7,7 +7,7 @@ public class CreateWayPoints : MonoBehaviour
     public int maxPoints, maxX, maxY;
     public int _case;
     MeshFilter mF;
-    GameObject pen;
+    public GameObject pen;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +16,10 @@ public class CreateWayPoints : MonoBehaviour
          mF = plane.GetComponent<MeshFilter>();
         mF.mesh = UpdateMesh(mF.mesh, (maxX/5/2), (maxY/5/2 ));
         plane.transform.position = new Vector3(0, 0, 2);
-        pen = FindObjectOfType<Mover>().gameObject;
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public  List<Vector3>   PointsInstance(int aCase)
     {
@@ -71,7 +67,9 @@ public class CreateWayPoints : MonoBehaviour
         ///
         //return new Vector3(Random.Range(-maxX/2, maxX/2), Random.Range(maxY/2, maxY/2));
         ////Random.InitState(Random.Range(12, 21200));
-        return Random.insideUnitCircle * maxX / 2;
+        Vector3 random = Random.insideUnitCircle * maxX / 2;
+        random = new Vector3(random.x + 70, random.y, random.z);
+        return random;
     }
     Mesh UpdateMesh(Mesh aMesh, float scaleX, float scaleY)
     {

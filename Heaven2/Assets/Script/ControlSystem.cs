@@ -5,54 +5,51 @@ public class ControlSystem : MonoBehaviour
 {
     public List<Vector3> _wayPoints = new List<Vector3>();
     public List<LineProperties> lineProperties = new List<LineProperties>();
-    bool needPoints;
+    bool needPoints= true;
     public bool randomMode;
     public Vector3 center;
      public  bool noWStart;
     public void ActivateObject(bool active)
     {
-        needPoints = active;
+        //needPoints = active;
         noWStart = !noWStart;
     }
+        public void Random(bool active)
+    {
+        //needPoints = active;
+        randomMode = !randomMode;
 
-
+    }
     void Update()
     {
-        if (!noWStart) {
+
+        if (lineProperties.Count > 100)
+        {
+            lineProperties.Clear();
+            lineProperties = new List<LineProperties>();
+        }
+
+        if (!noWStart)
+        {
             _wayPoints.Clear();
             return;
         }
-            if (randomMode)
-            {
-                if (_wayPoints.Count < 1)
-                {
-                    _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(0);
-                }
-            }
 
-            else
-            {
-                if (_wayPoints.Count == 4)
-                {
-                    needPoints = true;
-                }
-                if (_wayPoints.Count  < 1 & needPoints)
-                {
-                    FindObjectOfType<GameClient>().start = true;
-                    needPoints = false;
-                }
-
-                else
-                {
-                    //print("I Have Oints");
-                }
-
-                if (lineProperties.Count > 100)
-                {
-                    lineProperties.Clear();
-                    lineProperties = new List<LineProperties>();
-                }
+        if (_wayPoints.Count == 4)
+        {
+            needPoints = true;
         }
+        if (_wayPoints.Count < 1 & needPoints)
+        {
+            if (randomMode)
+                _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(1);
+            else
+                FindObjectOfType<GameClient>().start = true;
+            needPoints = false;
+        }
+
+
+
     }
 
     public LineProperties SetLine
@@ -158,33 +155,6 @@ public class ControlSystem : MonoBehaviour
 
         return result;
     }
-    //string CreateComandsForPolargraph(LineProperties inLine)
-    //{
-    //    Vector3 ancor = new Vector3(-198, 10, 0);
-    //    Vector3 ancor2 = new Vector3(198, 10, 0);
-
-    //    int scale = 1;
-    //    string lineType = inLine.type;
-    //    string comand = "null";
-    //    if (lineType == "Arc")
-    //    {
-    //        //if (lineProperties.Count > 1)
-    //        //    comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
-    //        //if (inLine.LR == 1)
-    //        //    comand = "G03X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
-    //        //if (inLine.LR == -1)
-    //        //    comand = "G02X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
-    //    }
-    //    if (lineType == "Line")
-    //    {
-    //        float distanceX = Vector3.Distance(ancor, inLine.endPosition);
-    //        float distanceY = Vector3.Distance(ancor2, inLine.endPosition);
-
-    //        comand = "G01X" + -distanceX * scale + "Y" + distanceY * scale;
-    //    }
-    //    return comand;
-    //}
-
 
 }
 

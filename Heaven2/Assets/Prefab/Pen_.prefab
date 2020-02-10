@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6758133353551933
 Transform:
   m_ObjectHideFlags: 0
@@ -57,7 +57,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -124,11 +123,10 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea53d2f61a28648ab9becf9bc7b43d86, type: 2}
+  - {fileID: 2100000, guid: 7233d372f750349c19e017ee12b4f871, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,7 +147,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1000
+  m_Time: 100
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -158,7 +156,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.67676926
+        value: 0.91360855
         inSlope: -8.482443
         outSlope: -8.482443
         tangentMode: 0
@@ -166,8 +164,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.5901682
       - serializedVersion: 3
-        time: 0.09703541
-        value: 0.23843792
+        time: 0.1352663
+        value: 0.47528484
         inSlope: -0.16850148
         outSlope: -0.16850148
         tangentMode: 0
@@ -175,8 +173,8 @@ TrailRenderer:
         inWeight: 1
         outWeight: 0.12906253
       - serializedVersion: 3
-        time: 0.7585318
-        value: 0.14419577
+        time: 0.77263093
+        value: 0.3240206
         inSlope: 0.000000054735832
         outSlope: 0.000000054735832
         tangentMode: 0
@@ -184,8 +182,8 @@ TrailRenderer:
         inWeight: 0
         outWeight: 1
       - serializedVersion: 3
-        time: 0.8580543
-        value: 0.081995636
+        time: 0.9003211
+        value: 0.1916453
         inSlope: -0.16546771
         outSlope: -0.16546771
         tangentMode: 0

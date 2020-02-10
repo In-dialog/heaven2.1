@@ -95,6 +95,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11396}
     - Class: 114
+      Script: {instanceID: 11416}
+    - Class: 114
       Script: {instanceID: 11498}
     - Class: 114
       Script: {instanceID: 11538}
@@ -121,6 +123,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12532}
     - Class: 114
+      Script: {instanceID: 12584}
+    - Class: 114
       Script: {instanceID: 12594}
     - Class: 114
       Script: {instanceID: 12690}
@@ -134,6 +138,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13414}
     - Class: 114
       Script: {instanceID: 13672}
+    - Class: 114
+      Script: {instanceID: 13680}
     - Class: 114
       Script: {instanceID: 13714}
     - Class: 114
@@ -958,4 +964,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/55.unity
-  playerPath: /Users/segalcodin/Documents/Programing/_GitHub_Indialog/Heaven/Server_Heaven/test_server_02.app
+  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Server_Heaven/Heaven_server_01.app
