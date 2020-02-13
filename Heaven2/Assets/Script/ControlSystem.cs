@@ -95,21 +95,27 @@ public class ControlSystem : MonoBehaviour
 
     string CreateComands(LineProperties inLine)
     {
+        Vector2 inVector = new Vector2(inLine.endPosition.y -130,inLine.endPosition.x-190-70);
+        if (inVector.x < -260 & inVector.y < -350)
+            return null;
+
         int scale = 1;
         string lineType = inLine.type;
         string comand = "null";
         if (lineType == "Arc")
         {
-            if (lineProperties.Count > 1)
-                comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
+            if (lineProperties.Count > 1) {
+                Vector3 pastVector = lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition;
+                comand = "G01X" + pastVector.y * scale + "Y" + pastVector.x * scale;
+            }
             if (inLine.LR == 1)
-                comand = "G03X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
+                comand = "G03X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
             if (inLine.LR == -1)
-                comand = "G02X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale + "R" + inLine.radious * scale;
+                comand = "G02X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
         }
         if (lineType == "Line")
         {
-            comand = "G01X" + -inLine.endPosition.y * scale + "Y" + -inLine.endPosition.x * scale;
+            comand = "G01X" + inVector.x * scale + "Y" + inVector.y * scale;
         }
         return comand;
     }
@@ -155,6 +161,31 @@ public class ControlSystem : MonoBehaviour
 
         return result;
     }
+    //string CreateComands(LineProperties inLine)
+    //{
+    //    Vector3 inVector = inLine.endPosition;
+    //    if (lineProperties.Count > 1)
+    //    {
+    //        Vector3 pastVector = lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition;
+    //    }
 
+    //    int scale = 1;
+    //    string lineType = inLine.type;
+    //    string comand = "null";
+    //    if (lineType == "Arc")
+    //    {
+    //        if (lineProperties.Count > 1)
+    //            comand = "G01X" + lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
+    //        if (inLine.LR == 1)
+    //            comand = "G03X" + (inLine.endPosition.y * scale + "Y" + inLine.endPosition.x * scale + "R" + inLine.radious * scale;
+    //        if (inLine.LR == -1)
+    //            comand = "G02X" + inLine.endPosition.y * scale + "Y" + inLine.endPosition.x * scale + "R" + inLine.radious * scale;
+    //    }
+    //    if (lineType == "Line")
+    //    {
+    //        comand = "G01X" + inLine.endPosition.y * scale + "Y" + inLine.endPosition.x * scale;
+    //    }
+    //    return comand;
+    //}
 }
 

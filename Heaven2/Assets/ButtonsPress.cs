@@ -19,6 +19,7 @@ public class ButtonsPress : MonoBehaviour
         {
             Menue.SetActive(active);
             active = !active;
+            Cursor.visible = !Cursor.visible;
         }
     }
 }

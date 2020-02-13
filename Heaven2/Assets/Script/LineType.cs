@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 
@@ -53,7 +54,9 @@ public class ArduinoConmander
     static  string _lock = "$X";
     static string _pause = "M0";
     static string _home = "$H";
-    public  string port;
+    static string _reset;
+
+    public string port;
     public SerialController sr;
     public int nrOfMachine;
     public bool connectedOn;
@@ -83,27 +86,31 @@ public class ArduinoConmander
             return sr;
         }
     }
+    public void MoveTo(Vector3 pos)
+    {
+        sr.SendSerialMessage("G0X" + (pos.y -130) + "Y" + (pos.x-190));
+    }
 
     public void MoveForword (int step)
     {
-        stepsX += step;
+        stepsX -= step;
         sr.SendSerialMessage("G0X"+stepsX+"Y"+stepsY);
     }
 
     public void MoveBack( int step)
     {
-        stepsX  -=step;
+        stepsX +=step;
         sr.SendSerialMessage("G0X" + stepsX + "Y" + stepsY);
 
     }
     public void MoveLeft( int step)
     {
-        stepsY += step;
+        stepsY -= step;
         sr.SendSerialMessage("G0X" + stepsX + "Y" + stepsY);
     }
     public void MoveRight( int step)
     {
-        stepsY -= step;
+        stepsY += step;
         sr.SendSerialMessage("G0X" + stepsX + "Y" + stepsY);
     }
 
@@ -131,22 +138,24 @@ public class ArduinoConmander
         }
     }
 
-    public void SendComand(SerialController sc, string _case)
+    public void SendComand( string _case)
     {
         switch (_case)
         {
-            case "Lock" :
-                sc.SendSerialMessage(_lock);
+
+            case "Reset" :
+                _reset = Encoding.ASCII.GetString(new byte[] { 24 });
+                sr.SendSerialMessage(_reset);
                 break;
             case "Pause":
-                sc.SendSerialMessage(_pause);
+                sr.SendSerialMessage(_pause);
                 break;
             case "Home":
-                sc.SendSerialMessage(_home);
+                sr.SendSerialMessage(_home);
                 break;
             case "StartPosition":
                 string _startPosition = "G0X????Y?????";
-                sc.SendSerialMessage(_startPosition);
+                sr.SendSerialMessage(_startPosition);
                 break;
         }
     }

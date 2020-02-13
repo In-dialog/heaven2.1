@@ -1,20 +1,20 @@
 ﻿<Properties StartupConfiguration="{1A932B82-F10C-987E-CDD7-7C7CC4831700}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/CreateWayPoints.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/LineType.cs">
     <Files>
-      <File FileName="Assets/Script/network/GameClient.cs" Line="82" Column="22" />
-      <File FileName="Assets/Script/Mover.cs" />
-      <File FileName="Assets/Script/SendToArduino.cs" />
-      <File FileName="Assets/ArduinoUI.cs" />
-      <File FileName="Assets/ReplaceText.cs" />
-      <File FileName="Assets/Script/LineType.cs" />
-      <File FileName="Assets/Script/ControlSystem.cs" />
+      <File FileName="Assets/ArduinoUI.cs" Line="1" Column="1" IsPinned="True" />
+      <File FileName="Assets/Script/network/GameClient.cs" Line="84" Column="30" />
+      <File FileName="Assets/Script/LineType.cs" Line="91" Column="65" />
+      <File FileName="Assets/Script/ControlSystem.cs" Line="98" Column="61" />
+      <File FileName="Assets/Script/SendToArduino.cs" Line="107" Column="29" />
       <File FileName="Assets/ButtonsPress.cs" />
-      <File FileName="Assets/Script/CreateWayPoints.cs" Line="10" Column="12" />
+      <File FileName="Assets/Script/CreateWayPoints.cs" Line="71" Column="54" />
+      <File FileName="Assets/UiComands.cs" Line="23" Column="55" />
+      <File FileName="Assets/SerialController/SerialController.cs" Line="161" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="feefbcd4-df25-4552-9cdd-86dde22eb4c5" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="53b2db07-1b13-484f-80c1-1d7b2771e527" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -80,8 +80,8 @@ public class GameClient : MonoBehaviour, INetEventListener
             {
                 Vector3 pos =  Vector3Packet.Deserialize(reader);
                 pos = Quaternion.AngleAxis(60, Vector3.forward) * pos;
-                pos = new Vector3(pos.x+12, pos.y, 0);
-                temp.Add(pos*6.5f);
+                pos = new Vector3(pos.x+23f, pos.y, 0);
+                temp.Add(pos*3);
             }
             if (cs._wayPoints.Count - lenth < 500)
                 cs._wayPoints.AddRange(temp);

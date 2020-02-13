@@ -67,8 +67,9 @@ public class CreateWayPoints : MonoBehaviour
         ///
         //return new Vector3(Random.Range(-maxX/2, maxX/2), Random.Range(maxY/2, maxY/2));
         ////Random.InitState(Random.Range(12, 21200));
-        Vector3 random = Random.insideUnitCircle * maxX / 2;
+        Vector3 random = Random.insideUnitCircle * maxX ;
         random = new Vector3(random.x + 70, random.y, random.z);
+        //random = new Vector3(random.x - 190, random.y-130, random.z);
         return random;
     }
     Mesh UpdateMesh(Mesh aMesh, float scaleX, float scaleY)

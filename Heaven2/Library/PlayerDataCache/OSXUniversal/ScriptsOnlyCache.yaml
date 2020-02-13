@@ -78,6 +78,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
     - Class: 72
       Script: {instanceID: 0}
     - Class: 81
@@ -884,4 +886,4 @@ ScriptsOnlyBuild:
   platform: 2
   scenePathNames:
   - Assets/s.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/heaven_0.3.app
+  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/heaven_0.3_F.app

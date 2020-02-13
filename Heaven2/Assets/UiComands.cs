@@ -11,6 +11,27 @@ public class UiComands : MonoBehaviour
     {
         mainSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
     }
+     void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            {
+
+                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Debug.Log("!!!!" + pos );
+
+                ToArduino.arCom[arduinNr].MoveTo(pos);
+
+                //RaycastHit hit;
+                //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                //{
+                //    Debug.Log(hit.point);
+                //}
+                //FindObjectOfType<s>
+                //Instantiate(particle, transform.position, transform.rotation);
+            }
+        }
+    }
     public int ValueChangeCheck()
     {
         arduinNr = (int)mainSlider.value;
@@ -34,4 +55,14 @@ public class UiComands : MonoBehaviour
     {
         ToArduino.arCom[arduinNr].MoveLeft(step);
     }
+
+    public void HomePrinter()
+    {
+        ToArduino.arCom[arduinNr].SendComand("Home");
+    }
+    public void Reset()
+    {
+        ToArduino.arCom[arduinNr].SendComand("Reset");
+    }
+
 }
