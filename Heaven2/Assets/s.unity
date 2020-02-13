@@ -1002,6 +1002,10 @@ PrefabInstance:
       propertyPath: m_Time
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 1314576344, guid: 415847f5f44f3445d92b4255102073d2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6758133353551928, guid: 415847f5f44f3445d92b4255102073d2, type: 3}
       propertyPath: m_Name
       value: Pen_
@@ -1053,6 +1057,10 @@ PrefabInstance:
     - target: {fileID: 6758133353551933, guid: 415847f5f44f3445d92b4255102073d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6758133353551935, guid: 415847f5f44f3445d92b4255102073d2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415847f5f44f3445d92b4255102073d2, type: 3}
@@ -1580,6 +1588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110442478695706598, guid: c73f8c52bbd954933abeb7076a191690,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c73f8c52bbd954933abeb7076a191690, type: 3}
