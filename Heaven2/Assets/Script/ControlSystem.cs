@@ -95,9 +95,14 @@ public class ControlSystem : MonoBehaviour
 
     string CreateComands(LineProperties inLine)
     {
-        Vector2 inVector = new Vector2(inLine.endPosition.y -130,inLine.endPosition.x-190-70);
-        if (inVector.x < -260 & inVector.y < -350)
-            return null;
+        //Vector2 inVector = new Vector2(inLine.endPosition.y -130,inLine.endPosition.x-190-70);
+        //if (inVector.x < -260 & inVector.y < -350)
+        //    return null;
+
+
+        Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x);
+        //if (inVector.x < -260 & inVector.y < -350)
+        //    return null;
 
         int scale = 1;
         string lineType = inLine.type;

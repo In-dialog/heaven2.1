@@ -73,6 +73,7 @@
     <Compile Include="Assets\Script\ControlSystem.cs" />
     <Compile Include="Assets\Script\CreateWayPoints.cs" />
     <Compile Include="Assets\Script\DimOnDistroy.cs" />
+    <Compile Include="Assets\Script\Display_Text_GRBL.cs" />
     <Compile Include="Assets\Script\GraphicBrain.cs" />
     <Compile Include="Assets\Script\GraphicElements.cs" />
     <Compile Include="Assets\Script\HiResScreenShots.cs" />

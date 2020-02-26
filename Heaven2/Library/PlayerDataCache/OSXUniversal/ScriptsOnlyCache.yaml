@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - ControlSystem
     - CreateWayPoints
     - DimOnDistroy
+    - Display_Text_GRBL
     - GameClient
     - GraphicElements
     - HiResScreenShots
@@ -160,6 +161,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11824}
     - Class: 114
       Script: {instanceID: 11864}
+    - Class: 114
+      Script: {instanceID: 15116}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -883,7 +886,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 6da16b87cd5e92ea0c478e2aab63bd06
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Display_Text_GRBL
   platform: 2
   scenePathNames:
   - Assets/s.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/heaven_0.3_F.app
+  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/Creen2.app
