@@ -83,7 +83,7 @@ public class GameClient : MonoBehaviour, INetEventListener
                 pos = new Vector3(pos.x+23f, pos.y, 0);
                 temp.Add(pos*3);
             }
-            if (cs._wayPoints.Count - lenth < 500)
+            if (cs._wayPoints.Count + lenth < 400)
                 cs._wayPoints.AddRange(temp);
            temp.Clear();
         }

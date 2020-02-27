@@ -58,19 +58,19 @@ public class ControlSystem : MonoBehaviour
         {
             _ = new LineProperties();
             LineProperties temp = value;
-            //Debug.Log(temp.type);
             lineProperties.Add(temp);
             FindObjectOfType<GraphicElements>().InstanceObject(temp);
             FindObjectOfType<GraphicElements>().CreatePoints(temp);
 
             string comand = CreateComands(temp);
             if (comand != "null")
-            {
                 FindObjectOfType<SendToArduino>()._positionsToSend[0].Add(comand);
-                //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
-                //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
-            }
-            FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(ComandWall(temp, 0.6f));
+
+            comand = CreateComandsS(temp);
+            if (comand != "null")
+                FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
+
+            //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(ComandWall(temp, 0.6f));
 
         }
 
@@ -95,12 +95,12 @@ public class ControlSystem : MonoBehaviour
 
     string CreateComands(LineProperties inLine)
     {
-        //Vector2 inVector = new Vector2(inLine.endPosition.y -130,inLine.endPosition.x-190-70);
+        Vector2 inVector = new Vector2(inLine.endPosition.y - 125, inLine.endPosition.x - 180 - 70);
         //if (inVector.x < -260 & inVector.y < -350)
         //    return null;
 
 
-        Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x);
+        //Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x);
         //if (inVector.x < -260 & inVector.y < -350)
         //    return null;
 
@@ -124,6 +124,39 @@ public class ControlSystem : MonoBehaviour
         }
         return comand;
     }
+
+    string CreateComandsS(LineProperties inLine)
+    {
+        //if (inVector.x < -260 & inVector.y < -350)
+        //    return null;
+
+
+        Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x);
+        //if (inVector.x < -260 & inVector.y < -350)
+        //    return null;
+
+        int scale = 1;
+        string lineType = inLine.type;
+        string comand = "null";
+        if (lineType == "Arc")
+        {
+            if (lineProperties.Count > 1)
+            {
+                Vector3 pastVector = lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition;
+                comand = "G01X" + pastVector.y * scale + "Y" + pastVector.x * scale;
+            }
+            if (inLine.LR == 1)
+                comand = "G03X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
+            if (inLine.LR == -1)
+                comand = "G02X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
+        }
+        if (lineType == "Line")
+        {
+            comand = "G01X" + inVector.x * scale + "Y" + inVector.y * scale;
+        }
+        return comand;
+    }
+
     string ComandWall(LineProperties inLine, float scale)
     {
         Vector3 inVector = inLine.endPosition;
@@ -148,24 +181,6 @@ public class ControlSystem : MonoBehaviour
         return comand;
     }
 
-    Vector2 Converted_Value(Vector3 Points, float distance_from_center, float distance_between_motors)
-    {
-        Vector2 result = new Vector2();
-        Vector2 Pos_Mx = new Vector2();
-        Vector2 Pos_My = new Vector2();
-
-        Pos_Mx.x = center.x - distance_between_motors / 2;
-        Pos_Mx.y = center.y + distance_from_center;
-        Pos_My.x = center.x + distance_between_motors / 2;
-        Pos_My.y = center.y + distance_from_center;
-
-        result.x = Vector2.Distance(Points, Pos_Mx)*-1;
-        result.y = Vector2.Distance(Points, Pos_My)*-1;
-        Debug.Log(result + "dsdfsfadfsdfsdfadsfds");
-
-
-        return result;
-    }
     //string CreateComands(LineProperties inLine)
     //{
     //    Vector3 inVector = inLine.endPosition;

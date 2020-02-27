@@ -6,7 +6,6 @@ ScriptsOnlyBuild:
     - ControlSystem
     - CreateWayPoints
     - DimOnDistroy
-    - Display_Text_GRBL
     - GameClient
     - GraphicElements
     - HiResScreenShots
@@ -56,7 +55,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/s.unity:
+    Assets/s 1.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -122,47 +121,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10484}
     - Class: 114
-      Script: {instanceID: 10746}
+      Script: {instanceID: 10748}
     - Class: 114
-      Script: {instanceID: 10770}
+      Script: {instanceID: 10772}
     - Class: 114
-      Script: {instanceID: 10788}
+      Script: {instanceID: 10790}
     - Class: 114
-      Script: {instanceID: 10864}
+      Script: {instanceID: 10866}
     - Class: 114
-      Script: {instanceID: 10884}
+      Script: {instanceID: 10886}
     - Class: 114
-      Script: {instanceID: 11124}
+      Script: {instanceID: 11126}
     - Class: 114
-      Script: {instanceID: 11138}
+      Script: {instanceID: 11140}
     - Class: 114
-      Script: {instanceID: 11152}
+      Script: {instanceID: 11154}
     - Class: 114
-      Script: {instanceID: 11178}
-    - Class: 114
-      Script: {instanceID: 11250}
+      Script: {instanceID: 11180}
     - Class: 114
       Script: {instanceID: 11252}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11254}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11290}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11424}
     - Class: 114
-      Script: {instanceID: 11700}
+      Script: {instanceID: 11600}
     - Class: 114
-      Script: {instanceID: 11708}
+      Script: {instanceID: 11702}
     - Class: 114
       Script: {instanceID: 11710}
     - Class: 114
-      Script: {instanceID: 11770}
+      Script: {instanceID: 11712}
     - Class: 114
-      Script: {instanceID: 11824}
+      Script: {instanceID: 11772}
     - Class: 114
-      Script: {instanceID: 11864}
+      Script: {instanceID: 11826}
     - Class: 114
-      Script: {instanceID: 15116}
+      Script: {instanceID: 11866}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -534,6 +531,12 @@ ScriptsOnlyBuild:
     className: ChromaticAberration
   - hash:
       serializedVersion: 2
+      Hash: 6da16b87cd5e92ea0c478e2aab63bd06
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Display_Text_GRBL
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -886,13 +889,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 6da16b87cd5e92ea0c478e2aab63bd06
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Display_Text_GRBL
   platform: 2
   scenePathNames:
-  - Assets/s.unity
-  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/Creen2.app
+  - Assets/s 1.unity
+  playerPath: /Users/segalcalin/Documents/GitHub/heaven2.1/Heaven2/Heaven_3.app
