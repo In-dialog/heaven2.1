@@ -8,6 +8,8 @@ public class CreateWayPoints : MonoBehaviour
     public int _case;
     MeshFilter mF;
     public GameObject pen;
+    public List<Vector3> oldPoints = new List<Vector3>();
+    float strem = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,37 +23,57 @@ public class CreateWayPoints : MonoBehaviour
 
     // Update is called once per frame
 
-    public  List<Vector3>   PointsInstance(int aCase)
+    public  List<Vector3>   PointsInstance(int _case)
     {
-    List < Vector3 > _wayPoints = new List<Vector3>();
+        List<Vector3> _wayPoints = new List<Vector3>();
 
-        _case = aCase;
-        if (_case == 0)
+        if (oldPoints.Count - 1 > 1)
         {
-
-            Vector3 temp = mF.mesh.GetRandomPointOnSurface();
-            while (Vector3.Distance(temp, pen.transform.position) > 50)
+            Debug.Log("dsd");
+            for (int i = 0; i < oldPoints.Count; i++)
             {
-                temp = mF.mesh.GetRandomPointOnSurface();
+                oldPoints[i] = new Vector3(oldPoints[i].x + strem, oldPoints[i].y + strem, 1);
+
+                //Vector3 random = Random.insideUnitCircle;
+                //oldPoints[i] = oldPoints[i] - random;
+
+                _wayPoints.Add(new Vector3(oldPoints[i].x, oldPoints[i].y, 0));
             }
-            _wayPoints.Add(temp);
-
+            strem *= -1;
+            return _wayPoints;
         }
-        if (_case == 1)
+        else
         {
-            for (int i = 0; i < maxPoints; i++)
-            {
+            oldPoints = new List<Vector3>();
 
-                Vector3 temp = RandomPoint();
-                if(i>1)
-                while (Vector3.Distance(temp, _wayPoints[i-1]) < 2 | Vector3.Distance(temp, _wayPoints[i - 1]) > 10)
+            if (_case == 0)
+            {
+                Vector3 temp = mF.mesh.GetRandomPointOnSurface();
+                while (Vector3.Distance(temp, pen.transform.position) > 50)
                 {
-                    temp = RandomPoint();
+                    temp = mF.mesh.GetRandomPointOnSurface();
                 }
                 _wayPoints.Add(temp);
             }
+            if (_case == 1)
+            {
+                for (int i = 0; i < maxPoints; i++)
+                {
+
+                    Vector3 temp = RandomPoint();
+                    if (i > 1)
+                        while (Vector3.Distance(temp, _wayPoints[i - 1]) < 5 | Vector3.Distance(temp, _wayPoints[i - 1]) > 30)
+                        {
+                            temp = RandomPoint();
+                        }
+                    _wayPoints.Add(temp);
+                    oldPoints.Add(new Vector3(temp.x, temp.y, 1));
+                }
+                //oldPoints = _wayPoints;
+            }
+            return _wayPoints;
+
         }
-        return _wayPoints;
 
     }
     Vector3 RandomPoint()
@@ -67,7 +89,7 @@ public class CreateWayPoints : MonoBehaviour
         ///
         //return new Vector3(Random.Range(-maxX/2, maxX/2), Random.Range(maxY/2, maxY/2));
         ////Random.InitState(Random.Range(12, 21200));
-        Vector3 random = Random.insideUnitCircle * maxX ;
+        Vector3 random = Random.insideUnitCircle * 70 ;
         random = new Vector3(random.x + 70, random.y, random.z);
         //random = new Vector3(random.x - 190, random.y-130, random.z);
         return random;

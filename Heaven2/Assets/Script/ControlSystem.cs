@@ -5,16 +5,18 @@ public class ControlSystem : MonoBehaviour
 {
     public List<Vector3> _wayPoints = new List<Vector3>();
     public List<LineProperties> lineProperties = new List<LineProperties>();
-    bool needPoints= true;
+    bool needPoints = true;
     public bool randomMode;
     public Vector3 center;
-     public  bool noWStart;
+    public bool noWStart;
+    double extrude;
+   public float z=0.1f;
     public void ActivateObject(bool active)
     {
         //needPoints = active;
         noWStart = !noWStart;
     }
-        public void Random(bool active)
+    public void Random(bool active)
     {
         //needPoints = active;
         randomMode = !randomMode;
@@ -23,7 +25,7 @@ public class ControlSystem : MonoBehaviour
     void Update()
     {
 
-        if (lineProperties.Count > 100)
+        if (lineProperties.Count > 50)
         {
             lineProperties.Clear();
             lineProperties = new List<LineProperties>();
@@ -42,9 +44,15 @@ public class ControlSystem : MonoBehaviour
         if (_wayPoints.Count < 1 & needPoints)
         {
             if (randomMode)
+            {
                 _wayPoints = GetComponent<CreateWayPoints>().PointsInstance(1);
+                //FindObjectOfType<SendToArduino>()._positionsToSend[0].Add("G0Z" + z);
+            }
             else
                 FindObjectOfType<GameClient>().start = true;
+
+            z += 0.09f;
+
             needPoints = false;
         }
 
@@ -62,13 +70,8 @@ public class ControlSystem : MonoBehaviour
             FindObjectOfType<GraphicElements>().InstanceObject(temp);
             FindObjectOfType<GraphicElements>().CreatePoints(temp);
 
-            string comand = CreateComands(temp);
-            if (comand != "null")
-                FindObjectOfType<SendToArduino>()._positionsToSend[0].Add(comand);
-
-            comand = CreateComandsS(temp);
-            if (comand != "null")
-                FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(comand);
+            FindObjectOfType<SendToArduino>()._positionsToSend[0].Add(Printer3DComands(temp));
+            //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(CreateComandsS(temp));
 
             //FindObjectOfType<SendToArduino>()._positionsToSend[1].Add(ComandWall(temp, 0.6f));
 
@@ -80,7 +83,7 @@ public class ControlSystem : MonoBehaviour
     {
         get
         {
-            if (_wayPoints.Count>0)
+            if (_wayPoints.Count > 0)
             {
                 Vector3 temp = _wayPoints[0];
                 _wayPoints.RemoveAt(0);
@@ -93,25 +96,68 @@ public class ControlSystem : MonoBehaviour
         }
     }
 
+    public Vector3 GetOld
+    {
+        get
+        {
+            if (_wayPoints.Count > 0)
+            {
+                Vector3 temp = _wayPoints[0];
+                return temp;
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
+    }
+
+    string Printer3DComands(LineProperties inLine)
+    {
+        Vector2 inVector = new Vector2(inLine.endPosition.y + 70, inLine.endPosition.x);
+
+
+        int scale = 1;
+        string lineType = inLine.type;
+        string comand = "null";
+
+        if (lineType == "Arc")
+        {
+            if (lineProperties.Count > 1)
+            {
+                Vector3 pastVector = lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition;
+                comand = "G01X" + (pastVector.x) + "Y" + (pastVector.y+70);
+            }
+            if (inLine.LR == 1)
+                comand = "G03X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
+            if (inLine.LR == -1)
+                comand = "G02X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
+        }
+        if (lineType == "Line")
+        {
+            comand = "G01X" + inVector.x * scale + "Y" + inVector.y * scale;
+        }
+
+        comand = comand + " Z" + z;
+        extrude += 0.1;
+        comand += " E"+extrude;
+
+        return comand;
+    }
     string CreateComands(LineProperties inLine)
     {
         Vector2 inVector = new Vector2(inLine.endPosition.y - 125, inLine.endPosition.x - 180 - 70);
-        //if (inVector.x < -260 & inVector.y < -350)
-        //    return null;
-
-
-        //Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x);
-        //if (inVector.x < -260 & inVector.y < -350)
-        //    return null;
+        
 
         int scale = 1;
         string lineType = inLine.type;
         string comand = "null";
         if (lineType == "Arc")
         {
-            if (lineProperties.Count > 1) {
+            if (lineProperties.Count > 1)
+            {
                 Vector3 pastVector = lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition;
-                comand = "G01X" + pastVector.y * scale + "Y" + pastVector.x * scale;
+                comand = "G01X" + (pastVector.x - 125) + "Y" + (pastVector.y  -180 - 70);
             }
             if (inLine.LR == 1)
                 comand = "G03X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
@@ -127,13 +173,7 @@ public class ControlSystem : MonoBehaviour
 
     string CreateComandsS(LineProperties inLine)
     {
-        //if (inVector.x < -260 & inVector.y < -350)
-        //    return null;
-
-
-        Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x);
-        //if (inVector.x < -260 & inVector.y < -350)
-        //    return null;
+        Vector2 inVector = new Vector2(inLine.endPosition.y, inLine.endPosition.x-70);
 
         int scale = 1;
         string lineType = inLine.type;
@@ -143,7 +183,7 @@ public class ControlSystem : MonoBehaviour
             if (lineProperties.Count > 1)
             {
                 Vector3 pastVector = lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition;
-                comand = "G01X" + pastVector.y * scale + "Y" + pastVector.x * scale;
+                comand = "G01X" + pastVector.y * scale + "Y" + (pastVector.x-70) * scale;
             }
             if (inLine.LR == 1)
                 comand = "G03X" + inVector.x * scale + "Y" + inVector.y * scale + "R" + inLine.radious * scale;
@@ -157,29 +197,29 @@ public class ControlSystem : MonoBehaviour
         return comand;
     }
 
-    string ComandWall(LineProperties inLine, float scale)
-    {
-        Vector3 inVector = inLine.endPosition;
+    //string ComandWall(LineProperties inLine, float scale)
+    //{
+    //    Vector3 inVector = inLine.endPosition;
 
-        string lineType = inLine.type;
-        string comand = "null";
+    //    string lineType = inLine.type;
+    //    string comand = "null";
 
-        if (lineType == "Arc")
-        {
-            if (lineProperties.Count > 1)
-                comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
+    //    if (lineType == "Arc")
+    //    {
+    //        //if (lineProperties.Count > 1)
+    //        //    comand = "G01X" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.y * scale + "Y" + -lineProperties[lineProperties.IndexOf(inLine) - 1].endPosition.x * scale;
 
-            if (inLine.LR == 1)
-                comand = "G03X" + -inVector.y * scale + "Y" + -inVector.x * scale + "R" + inLine.radious * scale;
-            if (inLine.LR == -1)
-                comand = "G02X" + -inVector.y * scale + "Y" + -inVector.x * scale + "R" + inLine.radious * scale;
-        }
-        if (lineType == "Line")
-        {
-            comand = "G01X" + -inVector.y * scale + "Y" + -inVector.x * scale;
-        }
-        return comand;
-    }
+    //        if (inLine.LR == 1)
+    //            comand = "G03X" + -inVector.y * scale + "Y" + -inVector.x * scale + "R" + inLine.radious * scale;
+    //        if (inLine.LR == -1)
+    //            comand = "G02X" + -inVector.y * scale + "Y" + -inVector.x * scale + "R" + inLine.radious * scale;
+    //    }
+    //    if (lineType == "Line")
+    //    {
+    //        comand = "G01X" + -inVector.y * scale + "Y" + -inVector.x * scale;
+    //    }
+    //    return comand;
+    //}
 
     //string CreateComands(LineProperties inLine)
     //{

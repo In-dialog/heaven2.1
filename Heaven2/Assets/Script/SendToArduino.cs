@@ -34,10 +34,13 @@ public class SendToArduino : MonoBehaviour
     {
         startProcess = value;
     }
+
+
     private void Update()
     {
         List<string> ports = ExtensionMethods.GetPortNames();
         if (ports.Count <=0 | !startProcess) return;
+
         if (initiateObject)
         {
             //////////////////////////////////---------------------------------->>>>>>> Initialize conection to arduino 
@@ -45,7 +48,6 @@ public class SendToArduino : MonoBehaviour
             //serialController = new List<SerialController>();
             for (int i = 0; i < ports.Count; i++)
             {
-
                 SerailControl = new GameObject("serial");
                 SerailControl.transform.gameObject.AddComponent<SerialController>().enabled = false;
                 SerialController sr = SerailControl.GetComponent<SerialController>();
@@ -58,67 +60,135 @@ public class SendToArduino : MonoBehaviour
                 arduino.SetPot = ports[i];
                 arduino.sr = sr;
                 arCom.Add(arduino);
-
             }
             FindObjectOfType<ArduinoUI>().Activate(true);
             initiateObject = false;
         }
         else if(delay==60)
         {
-
             for (int i = 0; i < arCom.Count; i++)
             {
                 SendData(arCom[i].SetSr, i);
-                print("----------->  " + arCom[i].nrOfMachine);
+                //print("-----------> machine:  " + arCom[i].nrOfMachine + "string to send " + _positionsToSend[i][0]);
             }
- 
-            if (arCom[0].nrOfMachine != 0 & count==2)
+            if (arCom[0].nrOfMachine != 0 & count == 2)
+            {
+                _positionsToSend.Clear();
+                _positionsToSend.Add(new List<string>());
+                _positionsToSend.Add(new List<string>());
+
+                msgArrived.Clear();
+                msgArrived.Add(new List<string>());
+                msgArrived.Add(new List<string>());
                 arCom.Reverse();
+            }
             delay = 0;
         }
         delay++;
-        //////////////////////////////////---------------------------------->>>>>>> End of update
     }
+    void SendData(SerialController _serialController, int i)
+    {
+        ReciveData(_serialController, i);
 
-
-    void SendData(SerialController _serialController,int i) 
+        if(msgArrived[i].Count>=1)
+        if (msgArrived[i][0].Length-1>=1)
         {
-            ReciveData(_serialController, i);
-
-        if (msgArrived[i].Count >= 1)
-        {
-            //print(msgArrived[i][0]);
-            if (msgArrived[i][0].Contains("Grbl"))
+            print("----------->arduino msg:  " + msgArrived[i][0] + "machine number: " + i);
+            ///////
+            if (msgArrived[i][0].Contains("Grbl ")|| msgArrived[i][0].Contains("Marlin"))
             {
-                if (msgArrived[i][0].Contains("XY"))
+                if (msgArrived[i][0].Contains("XY") || msgArrived[i][0].Contains("Marlin"))
                 {
                     arCom[i].SetNumber = 0;
                 }
-      
-                _serialController.SendSerialMessage("G00X00Y00" + "F" + speed);
-                msgArrived[i].RemoveAt(0);
+                //else
+                //{
+                //    arCom[i].SetNumber = 1;
+                //}
+                _serialController.SendSerialMessage("G00X1Y1" + "F" + speed);
                 arCom[i].connectedOn = true;
                 count++;
-            }
-            else if (msgArrived[i][0].Contains("ok") & _positionsToSend[i].Count > 0)
-            {
-                string temp = _positionsToSend[i][0] + "F" + speed;
-                _serialController.SendSerialMessage(temp);
-                print(temp);
-                _positionsToSend[i].RemoveAt(0);
                 msgArrived[i].RemoveAt(0);
+                return;
+            }
+            ////////
+            else if (msgArrived[i][0].Contains("ok") & _positionsToSend[i].Count-1 > 1)
+            {
+                    if (_positionsToSend[i][0] == "null") 
+                    {
+                        _positionsToSend[i].RemoveAt(0);
+                        return;
 
-            }
-            //else if (msgArrived[i][0].Contains("error"))
-            else
-            {
-                Debug.Log("coruptdata");
-                _serialController.SendSerialMessage("G0");
-                if(_positionsToSend[i].Count-1>0)
+                    }
+                    string temp = _positionsToSend[i][0] + "F" + speed;
+                _serialController.SendSerialMessage(temp);
                 _positionsToSend[i].RemoveAt(0);
                 msgArrived[i].RemoveAt(0);
+                print(temp);
+                return;
             }
+            ////////
+            else if (msgArrived[i][0].Contains("error: "))
+            {
+                Debug.Log("coruptdata " + i + "grbl= "+ _positionsToSend[i]);
+                if (_positionsToSend[i].Count > 1)
+                {
+                    _positionsToSend[i].RemoveAt(0);
+                }
+                msgArrived[i].RemoveAt(0);
+                _serialController.SendSerialMessage("G0");
+                return;
+            }
+
         }
+
+
+
+
+
+        //if (msgArrived[i].Count >= 1)
+        //{
+        //    print("----------->  " + "arduino msg  "+msgArrived[i][0]+"inndex"+i);
+        //    if (msgArrived[i][0].Contains("Grbl"))
+        //    {
+        //        if (msgArrived[i][0].Contains("XY"))
+        //        {
+        //            arCom[i].SetNumber = 0;
+
+        //        }
+        //        msgArrived[i].RemoveAt(0);
+        //        _serialController.SendSerialMessage("G00X00Y00" + "F" + speed);
+        //        arCom[i].connectedOn = true;
+        //        count++;
+        //        return;
+        //    }
+        //    else if (msgArrived[i][0].Contains("ok") & _positionsToSend[i].Count > 0)
+        //    {
+        //        string temp = _positionsToSend[i][0] + "F" + speed;
+        //        _serialController.SendSerialMessage(temp);
+        //        print(temp);
+        //        _positionsToSend[i].RemoveAt(0);
+        //        msgArrived[i].RemoveAt(0);
+        //        return;
+        //    }
+        //    //else if (msgArrived[i][0].Contains("error"))
+        //    else if (msgArrived[i][0].Contains("error: "))
+        //    {
+        //        Debug.Log("coruptdata" +i);
+        //        _serialController.SendSerialMessage("G0");
+        //        if (_positionsToSend[i].Count > 1)
+        //        {
+        //            _positionsToSend[i].RemoveAt(0);
+        //        }
+        //        msgArrived[i].RemoveAt(0);
+        //        //msgArrived[i][0] = "ok";
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        msgArrived[i].RemoveAt(0);
+        //    }
+        //}
     }
     string ReciveData(SerialController _serialController,int i)
     {
@@ -141,9 +211,10 @@ public class SendToArduino : MonoBehaviour
         else
         {
             Debug.LogWarning("Message arrived: " + message);
-            if (message.Length-1>1)
+            if (message.Length-1>=1 & msgArrived[i].Contains(message)==false & message.Contains("SD card")==false & (message.Contains("Marlin") || message.Contains("Grbl ")|| message.Contains("ok") || message.Contains("error: ")))
             {
-                msgArrived[i].Add(message);
+            
+                    msgArrived[i].Add(message);
             }
             return message;
         }

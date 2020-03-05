@@ -33,7 +33,7 @@ public class SerialController : MonoBehaviour
     public string portName = "COM3";
 
     [Tooltip("Baud rate that the serial device is using to transmit data.")]
-    public int baudRate = 115200;
+    public int baudRate = 250000;
 
     [Tooltip("Reference to an scene object that will receive the events of connection, " +
              "disconnection and the messages from the serial device.")]
@@ -45,7 +45,7 @@ public class SerialController : MonoBehaviour
 
     [Tooltip("Maximum number of unread data messages in the queue. " +
              "New messages will be discarded.")]
-    public int maxUnreadMessages = 10;
+    public int maxUnreadMessages = 40;
 
 
 

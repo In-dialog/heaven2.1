@@ -86,9 +86,13 @@ public class ArduinoConmander
             return sr;
         }
     }
+    //public void MoveTo(Vector3 pos)
+    //{
+    //    sr.SendSerialMessage("G0X" + (pos.y -130) + "Y" + (pos.x-190));
+    //}
     public void MoveTo(Vector3 pos)
     {
-        sr.SendSerialMessage("G0X" + (pos.y -130) + "Y" + (pos.x-190));
+        sr.SendSerialMessage("G0X" + (pos.y +70) + "Y" + (pos.x +70));
     }
 
     public void MoveForword (int step)

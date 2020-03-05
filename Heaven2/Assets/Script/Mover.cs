@@ -83,7 +83,7 @@ public class Mover : MonoBehaviour
                 return;
             }
         }
-        else targe = FindObjectOfType<ControlSystem>().GetTarget;
+        else targe = FindObjectOfType<ControlSystem>().GetOld;
     }
 
     Transform CalculateCenter(Vector3 _target, int orientation)

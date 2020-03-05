@@ -1071,11 +1071,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 788101551630483280, guid: 4939d3d53fed8440bb7bfa48ad5e09fb,
+        type: 3}
+      propertyPath: startProcess
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 788101551630483282, guid: 4939d3d53fed8440bb7bfa48ad5e09fb,
         type: 3}
       propertyPath: pen
       value: 
       objectReference: {fileID: 1314576338}
+    - target: {fileID: 788101551630483282, guid: 4939d3d53fed8440bb7bfa48ad5e09fb,
+        type: 3}
+      propertyPath: maxPoints
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 788101551630483283, guid: 4939d3d53fed8440bb7bfa48ad5e09fb,
         type: 3}
       propertyPath: lr
